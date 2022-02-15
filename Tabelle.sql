@@ -18,13 +18,13 @@
 
 CREATE TABLE Utente(
 	email varchar(255) PRIMARY KEY,
-	nome varchar(255),
+	nome varchar(255) NOT NULL,
 	cognome varchar(255),
 	Citta varchar(255),
 	via varchar(255),
 	civico int,
-	telefono varchar(255),
-	password varchar(255)
+	telefono varchar(255) NOT NULL,
+	password varchar(255) NOT NULL
 );
 
 CREATE TABLE CartaCredito(
