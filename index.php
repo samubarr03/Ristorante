@@ -1,4 +1,14 @@
-<html lang="en">
+		<?php
+
+
+		if(!isset($_SESSION['user']))
+		//user non loggato
+		$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="user.png" width="50" height="40"></a>';
+		else{
+		$logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "utente.png" style = "width: 20px; height: 20px;"></a>';
+		}
+?>
+<html>
 		<head>
 			<!-- Required meta tags -->
 			<meta charset="utf-8">
@@ -21,69 +31,36 @@
 	
 			<title>Prenota-One</title>
 	  	</head>
-		<style>
 
-		</style>
         <body>
 		<div class="bg">
-<?php
-	session_start();
-	if(isset($_SESSION['mail'])){
-	?>
-        <!-- NAVBAR PER UTENTE LOGGATO -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-				<div class="container p-2">
-					<a class="navbar-brand" href="./">
-      					<img src="img/logo.png" alt="" width="80" height="80" class="d-inline-block align-text-top">
-					</a>
-					<h1 class="navbar-brand">Prenota-One</h1>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-						<ul class="navbar-nav">
-							<li class="nav-item active">
-								<a class="nav-link" href="">Home<span class="sr-only">(current)</span></a>
-							</li>
-							
-							<li class="nav-item">
-								<a class="nav-link" href="html/compra/compra.html">Prenota</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="html/logout/logout.php">Logout</a>
-							</li>
-							<li class="nav-item active">
-								<a class="nav-link" href=""></a>
-							</li>
-							<li class="nav-item active">
-								<a class="nav-link" href=""></a>
-							</li>
 
-							<li class="nav-item">
-								<a href="html/profilo/profilo.php">
-									<img src="img/icone/profilo.svg" align=”right” alt="" width="40" height="40" class="d-inline-block align-text-top">
-								</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-		</nav>
-
-		<?php
-			}else{
-			?>
-        <!-- NAVBAR PER UTENTE NON LOGGATO -->
-        <!-- Image and text -->
-		
 	<nav class="navbar navbar-light" style="background-color: #ff6900;">
-<div class="centrare">
-		<a class="navbar-brand" href="#">
-			<img src="img/logo_large_b.png" width="250" height="81" class="d-inline-block align-top" alt="">
-		</a>
-		<div class="topnav-centered">
-			<a href="#menu">menù</a>
-			<a href="#prenota">prenota</a>
-			<a href="#chi siamo">chi siamo</a>
+		<div class="centrare">
+			<a class="navbar-brand" href="#">
+				<img src="img/logo_large_b.png" width="250" height="81" class="d-inline-block align-top" alt="">
+			</a>
+		</div>
+		<div class="dropdown">
+			<button class="dropbtn">Menù</button>
+			<div class="dropdown-content">
+				<a href="#">Primi</a>
+				<a href="#">Secondi</a>
+				<a href="#">Dolci</a>
+				<a href="#">Pizze</a>
+				<a href="#">Bevande</a>
+			</div>	
+			<button class="dropbtn">Prenota</button>
+			<!--<button class="dropbtn">Chi siamo</button>
+			<button class="dropbtn">Quality</button>-->
+		</div>
+		<div style="float:right;">
+		<a>
+
+			<?php
+				echo $logged;
+			?>
+
 		</div>
 	</nav>
 <img src="img/immagina.png" class="flex">
@@ -94,9 +71,7 @@
 </div> -->
 	</div>
 	</div>
-<?php
-	}
-	?>
+
 </div>	
     
 		<!-- Footer -->
