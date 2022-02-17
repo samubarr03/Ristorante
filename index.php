@@ -3,9 +3,9 @@
 
 		if(!isset($_SESSION['user']))
 		//user non loggato
-		$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="user.png" width="50" height="40"></a>';
+		$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="img/user.png" width="50" height="40"></a>';
 		else{
-		$logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "utente.png" style = "width: 20px; height: 20px;"></a>';
+		$logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "img/utente.png" style = "width: 20px; height: 20px;"></a>';
 		}
 ?>
 <html>
