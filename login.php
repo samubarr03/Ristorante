@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+	$servername = "localhost";
     $username = "root";
     $password = "";
 
@@ -14,43 +14,33 @@ $servername = "localhost";
 	$email = $_POST["email"];
 	$password = hash('sha256', $_POST["password"]);
 		
-	if (empty($email) || empty($password)) {
-		$msg = 'Inserisci email e password %s';
-	} else {
-		$query = "
-			SELECT email, password
-			FROM users
-			WHERE email = :email
-		";
-			
-		$check = $pdo->prepare($query);
-		$check->bindParam(':email', $email, PDO::PARAM_STR);
-		$check->execute();
-			
-		$user = $check->fetch(PDO::FETCH_ASSOC);
-			
-		if (!$user || password_verify($password, $user['password']) === false) {
-			$msg = 'Credenziali utente errate %s';
-		} else {
-			session_regenerate_id();
-			$_SESSION['email'] =  $email;				
-			header('Location: index.php');
-			exit;
-		}
-		printf($msg, '<a href="../login.html">torna indietro</a>');	
-	}	
-			
-?>	
+	$query = "SELECT * FROM utente WHERE email='".$email."' AND password='".$password."' LIMIT 1";
+	$results = mysqli_query($conn, $query);
 
+
+	if (mysqli_num_rows($results) == 1) {
+		$row = $results -> fetch_assoc();
+		$_SESSION['email'] = $email;
+		$_SESSION['nome'] = $row["nome"];
+		header("location: index.php");
+	}	
+	else{
+		echo '<script>alert("Email o password errate")</script>';
+		header("location: login.html");
+
+	}
+
+
+?>	
+<!--
 <html>
 	<head>
-	<link rel="stylesheet" href="homepage.css">
-	<link rel="icon" type="image/x-icon" href="immagini/icon.png">	
-		<title>Erorre Login!</title>
+	<link rel="stylesheet" href="def.css">	
+		<title></title>
 	</head>
 	<body class="registrato">
-		<h1 class="titolino">  </h1>
+		<h1 class="titolino"> Email o password errati  </h1>
 		
 		<a href="login.html"> <button class="sbagliato" >LOGIN</button></a>
 	</body>
-</html>	
+</html>	-->
