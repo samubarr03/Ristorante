@@ -269,30 +269,36 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-			$sql = "SELECT * FROM portata";
+			$sql = "SELECT * FROM portata ORDER BY id ASC";
 			$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
-			while( $record = mysqli_fetch_assoc($resultset) ) {
+			if(mysqli_num_rows($resultset) > 0)
+				{
+					while($row = mysqli_fetch_array($resultset))
+					{
+            
 			    ?>
-                <div class="card hovercard">
-                    <div class="cardheader">               
-					    <div class="avatar">
-						    <img alt="" src="<?php echo $record['image']; ?>">
-					    </div>
-				    </div>
-                    <div class="card-body info">
-                        <div class="title">
-                            <a href="#"><?php echo $record['name']; ?></a>
-                        </div>
-					    <div class="desc"> <a target="_blank" href="<?php echo $record['website']; ?>">
-                            <?php echo $record['website']; ?></a></div>		
-                            <div class="desc"><?php echo $record['description']; ?></div>      
-					        <div class="desc"><?php echo $record['address']; ?></div>								
-                        </div>
-                        <div class="card-footer bottom">
-                                                
-                        </div>
-                    </div>
+			<div class="col-md-4">
+				<form method="post" action="index.php?action=add&id=<?php echo $row["id"]; ?>">
+					<div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
+						<img src="images/<?php echo $row["img"]; ?>" class="img-responsive" /><br />
+
+						<h4 class="text-info"><?php echo $row["nome"]; ?></h4>
+
+						<h4 class="text-danger">$ <?php echo $row["prezzo"]; ?></h4>
+
+						<input type="text" name="quantity" value="1" class="form-control" />
+
+						<input type="hidden" name="hidden_name" value="<?php echo $row["nome"]; ?>" />
+
+						<input type="hidden" name="hidden_price" value="<?php echo $row["prezzo"]; ?>" />
+
+						<input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
+
+					</div>
+				</form>
+			</div>
 	            <?php 
+                    }
             } ?>
     
         <!-- Footer -->
