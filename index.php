@@ -1,3 +1,12 @@
+<?php
+	if(!isset($_SESSION['user']))
+	//user non loggato
+	$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="img/user.png" width="50" height="40"></a>';
+	else{
+		$logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "img/utente.png" style = "width: 20px; height: 20px;"></a>';
+	}
+	require_once ('data.php');
+?>
 <html lang="en">
 		<head>
 			<!-- Required meta tags -->
@@ -70,35 +79,22 @@
 			<img src="img/logo_large_b.png" width="333" height="108" class="d-inline-block align-top" alt="">
 		</a>
 		<div class="dropdown">
-  <button class="dropbtn">Dropdown</button>
+  <button class="dropbtn"><a href="menu.php">Menù 1</a></button>
   <div class="dropdown-content">
-  <a href="#">Link 1</a>
-  <a href="#">Link 2</a>
-  <a href="#">Link 3</a>
+  <a href="#">Primi</a>
+  <a href="#">Secondi</a>
+  <a href="#">Dolci</a>
   </div>
   </div>
   
   <div class="dropdown">
-  <button class="dropbtn">Account</button>
+  <button class="dropbtn"> <?php $logged ?></button>
   <div class="dropdown-content">
   <a href="#">Informazioni</a>
   <a href="#">Modifica account</a>
   <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="#">Logout</a>
   </div>
-  		<!--
-		<div class="dropdown">
-		<button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Dropdown button
-		</button>
-		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-			<a class="dropdown-item" href="#">Action</a>
-			<a class="dropdown-item" href="#">Another action</a>
-			<a class="dropdown-item" href="#">Something else here</a>
-			<div class="dropdown-divider"></div>
- 			<a class="dropdown-item" href="#">Separated link</a>
-		</div>
-		-->
 </div>
 <div class="bg">
 </div><br>

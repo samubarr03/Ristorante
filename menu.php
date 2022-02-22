@@ -1,3 +1,29 @@
+<?php
+    require_once ('data.php');
+    require_once ('product.php');
+    session_start();
+
+    if (isset($_POST['add']) && isset($_SESSION['email']) ){
+        $sql = "INSERT INTO ClienteAggiungePortata
+        VALUES ('{$id}','{$_SESSION['email']}')";
+    
+        if ($conn->query($sql) === TRUE) {}
+        else {
+            echo "Error: hai già inserito questa portata nel carrello" . $sql . "<br>" . $conn->error;
+        }
+    }
+    else{
+
+        header("location: login.html");
+
+
+    }
+
+
+
+?>
+
+?>
 <html>
     <head>
         <!-- Required meta tags -->
@@ -258,50 +284,24 @@
             </div>
         </div>    
     <!-- inizia parte menu -->
-        <?php
-		    $servername = "localhost";
-            $username = "root";
-            $password = "";          
-                // Create connection
-            $conn = new mysqli($servername, $username, $password, 'restaurant');
-                // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
 
-			$sql = "SELECT * FROM portata ORDER BY id ASC";
-			$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
-			if(mysqli_num_rows($resultset) > 0)
-				{
-					while($row = mysqli_fetch_array($resultset))
-					{
+    <div class="container">
+        <div class="row text-center py-5">
+            <?php
+                $sql = "SELECT * FROM portata ORDER BY id ASC";
+                $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+                if(mysqli_num_rows($resultset) > 0)
+                    {
+                        while($row = mysqli_fetch_array($resultset))
+                        {
+                            component($row['nome'], $row['prezzo'], $row['img'], $row['id']);
+                        }
+                    }    
+                    ?>
+        </div>
+    </div>                
             
-			    ?>
-			<div class="col-md-4">
-			<div class="row align-items-center">	
-            <form method="post" action="index.php?action=add&id=<?php echo $row["id"]; ?>">
-					<div style="border:1px solid #333; background-color:#f1f1f1; border-radius:5px; padding:16px;" align="center">
-						<img src="img/Immagini/<?php echo $row["img"]; ?>" class="img-responsive" /><br />
 
-						<h4 class="text-info"><?php echo $row["nome"]; ?></h4>
-
-						<h4 class="text-danger">$ <?php echo $row["prezzo"]; ?></h4>
-
-						<input type="text" name="quantity" value="1" class="form-control" />
-
-						<input type="hidden" name="hidden_name" value="<?php echo $row["nome"]; ?>" />
-
-						<input type="hidden" name="hidden_price" value="<?php echo $row["prezzo"]; ?>" />
-
-						<input type="submit" name="add_to_cart" style="margin-top:5px;" class="btn btn-success" value="Add to Cart" />
-                        </div>    
-					</div>
-				</form>
-			</div>
-	            <?php 
-                    }
-            } ?>
-    
         <!-- Footer -->
 <footer class="page-footer font-small" style="background-color: #ff8733;">
     <div class="container-fluid">

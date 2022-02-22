@@ -68,6 +68,13 @@ CREATE TABLE PortataContieneIngrediente(
 );
 
 
+CREATE TABLE ClienteAggiungePortata(
+	id int REFERENCES PORTATA (id),
+	email varchar(255) REFERENCES Cliente (email)
+);
+
+
+
 
  INSERT INTO utente VALUES ('smubarr03@gmail.com','sam','barr','ge','g','4','333333433','1d96ef8b084825443ced61612933de84fb4019a806b42fb19a45e3cb641f69ec');
 /*
@@ -92,7 +99,7 @@ INSERT INTO Tipo VALUES ('pizza');
 
 
 
-INSERT INTO Portata VALUES ('01','Gnocchi al pesto','Primi/img2.jpg','5,50','16','primo');
+INSERT INTO Portata VALUES ('01','Gnocchi al pesto','Primi/img1.jpg','5,50','16','primo');
 
 INSERT INTO Portata VALUES ('02','Spaghetti al sugo','Primi/img2.jpg','5,50','16','primo');
 
@@ -112,11 +119,11 @@ INSERT INTO Portata VALUES ('05','Lasagna al pesto','Primi/img5.jpg','6,50','10'
 
 */
 
-INSERT INTO Portata VALUES ('06','Arrosto di maiale','img/img6.jpg','7,50','14','carne');
+INSERT INTO Portata VALUES ('06','Arrosto di maiale','Carne/img6.jpg','7,50','14','carne');
 
-INSERT INTO Portata VALUES ('07','Spezzatino di maiale','img/img7.jpg','7,50','14','carne');
+INSERT INTO Portata VALUES ('07','Spezzatino di maiale','Carne/img7.jpg','7,50','14','carne');
 
-INSERT INTO Portata VALUES ('08','Pollo arrosto','img/8.jpg','7,90','8','carne');
+INSERT INTO Portata VALUES ('08','Pollo arrosto','Carne/img8.jpg','7,90','8','carne');
 
 
 
@@ -125,9 +132,9 @@ INSERT INTO Portata VALUES ('08','Pollo arrosto','img/8.jpg','7,90','8','carne')
     - Orata al forno
 */
 
-INSERT INTO Portata VALUES ('09','Salmone','img/img9,jpg','8,90','15','pesce');
+INSERT INTO Portata VALUES ('09','Salmone','Pesce/img9.jpg','8,90','15','pesce');
 
-INSERT INTO Portata VALUES ('10','Orata al forno','img/img10.jpg','8,50','20','pesce');
+INSERT INTO Portata VALUES ('10','Orata al forno','Pesce/img10.jpg','8,50','20','pesce');
 
 /*
 
@@ -138,11 +145,11 @@ INSERT INTO Portata VALUES ('10','Orata al forno','img/img10.jpg','8,50','20','p
 
 */
 
-INSERT INTO Portata VALUES ('11','Insalata mista','img/img10.jpg','3,70','4','contorno');
+INSERT INTO Portata VALUES ('11','Insalata mista','Contorni/img11.jpg','3,70','4','contorno');
 
-INSERT INTO Portata VALUES ('12','Insalata di riso','img/img11.jpg','3,70','4','contorno');
+INSERT INTO Portata VALUES ('12','Insalata di riso','Contorni/img12.jpg','3,70','4','contorno');
 
-INSERT INTO Portata VALUES ('13','Insalata di verdure','img/img12.jpg','3,70','4','contorno');
+INSERT INTO Portata VALUES ('13','Insalata di verdure','Contorni/img13.jpg','3,70','4','contorno');
 
 /*
 
@@ -156,17 +163,17 @@ INSERT INTO Portata VALUES ('13','Insalata di verdure','img/img12.jpg','3,70','4
 
 */
 
-INSERT INTO Portata VALUES ('14','Tiramisù','img/img14.jpg','3','25','dolce');
+INSERT INTO Portata VALUES ('14','Tiramisù','Dolci/img14.jpg','3','25','dolce');
 
-INSERT INTO Portata VALUES ('15','Cheesecake','img/img15.jpg','3,20','25','dolce');
+INSERT INTO Portata VALUES ('15','Cheesecake','Dolci/img15.jpg','3,20','25','dolce');
 
-INSERT INTO Portata VALUES ('16','Torta di mele','img/img16.jpg','3,50','15','dolce');
+INSERT INTO Portata VALUES ('16','Torta di mele','Dolci/img16.jpg','3,50','15','dolce');
 
-INSERT INTO Portata VALUES ('17','Torta della nonna','img/img17.jpg','3,50','15','dolce');
+INSERT INTO Portata VALUES ('17','Torta della nonna','Dolci/img17.jpg','3,50','15','dolce');
 
-INSERT INTO Portata VALUES ('18','Gelato alla vaniglia','img/img18.jpg','1,60','3','dolce');
+INSERT INTO Portata VALUES ('18','Gelato alla vaniglia','Dolci/img18.jpg','1,60','3','dolce');
 
-INSERT INTO Portata VALUES ('19','Gelato al cioccolato','img/img19.jpg','1,60','3','dolce');
+INSERT INTO Portata VALUES ('19','Gelato al cioccolato','Dolci/img19.jpg','1,60','3','dolce');
 
 
 
@@ -183,16 +190,16 @@ INSERT INTO Portata VALUES ('19','Gelato al cioccolato','img/img19.jpg','1,60','
 
 */
 
-INSERT INTO Portata VALUES ('20','Margherita','img/img20.jpg','4','5','pizza');
+INSERT INTO Portata VALUES ('20','Margherita','Pizze/img20.jpg','4','5','pizza');
 
-INSERT INTO Portata VALUES ('21','Marinara','img/img21.jpg','5','5','pizza');
+INSERT INTO Portata VALUES ('21','Marinara','Pizze/img21.jpg','5','5','pizza');
 
-INSERT INTO Portata VALUES ('22','Diavola','img/img22.jpg','6,40','5','pizza');
+INSERT INTO Portata VALUES ('22','Diavola','Pizze/img22.jpg','6,40','5','pizza');
 
-INSERT INTO Portata VALUES ('23','4 formaggi','img/img23.jpg','6,40','5','pizza');
+INSERT INTO Portata VALUES ('23','4 formaggi','Pizze/img23.jpg','6,40','5','pizza');
 
-INSERT INTO Portata VALUES ('24','4 stagioni','img/img24.jpg','6,40','5','pizza');
+INSERT INTO Portata VALUES ('24','4 stagioni','Pizze/img24.jpg','6,40','5','pizza');
 
-INSERT INTO Portata VALUES ('25','Prosciutto e funghi','img/img25.jpg','6,40','5','pizza');
+INSERT INTO Portata VALUES ('25','Prosciutto e funghi','Pizze/img25.jpg','6,40','5','pizza');
 
-INSERT INTO Portata VALUES ('26','Pesto','img/img26.jpg','6,50','5','pizza');
+INSERT INTO Portata VALUES ('26','Pesto','Pizze/img26.jpg','6,50','5','pizza');
