@@ -261,28 +261,7 @@
     <body>
         <div class="bg">
         <!--NAVBAR -->
-            <nav class="navbar navbar-light" style="background-color: #ff6900;">
-                <a class="navbar-brand" href="#">
-                    <img src="img/logo_large_b.png" width="333" height="108" class="d-inline-block align-top" alt="">
-                </a>
-                <div class="dropdown">
-                    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         Dropdown button
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-            </nav>
-            <img src="img/immagina.png" class="flex">
-            <div class="bottonialcentro">
-                <a href="#" class="button">Menù </a>
-                <a href="#" class="button">Prenota</a>
-                <a href="#" class="button">Chi siamo</a>
-            </div>
-        </div>    
+        <?php require_once ("nav.html"); ?> 
     <!-- inizia parte menu -->
 
     <div class="container">

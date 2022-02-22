@@ -1,9 +1,14 @@
 <?php
-	if(!isset($_SESSION['user']))
-	//user non loggato
-	$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="img/user.png" width="50" height="40"></a>';
+session_start();
+	if(!isset($_SESSION['email'])){
+	
+	$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="img/user.png" width="50" height="40">Accedi</a>';
+
+	}
 	else{
-		$logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "img/utente.png" style = "width: 20px; height: 20px;"></a>';
+		$logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "img/utente.png" style = "width: 20px; height: 20px;">Loggato</a>';
+		
+
 	}
 	require_once ('data.php');
 ?>
@@ -70,51 +75,25 @@
 					background-color: #ff6900;
 					}
         	</style>
-		  <body>
-		<div class="bg">
+		<body>
+			<div class="bg">
         <!--NAVBAR -->
-		
-		<nav class="navbar navbar-light" style="background-color: #ff6900;">
-		<br><a class="navbar-brand" href="#">
-			<img src="img/logo_large_b.png" width="333" height="108" class="d-inline-block align-top" alt="">
-		</a>
-		<div class="dropdown">
-  <button class="dropbtn"><a href="menu.php">Menù 1</a></button>
-  <div class="dropdown-content">
-  <a href="#">Primi</a>
-  <a href="#">Secondi</a>
-  <a href="#">Dolci</a>
-  </div>
-  </div>
-  
-  <div class="dropdown">
-  <button class="dropbtn"> <?php $logged ?></button>
-  <div class="dropdown-content">
-  <a href="#">Informazioni</a>
-  <a href="#">Modifica account</a>
-  <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Logout</a>
-  </div>
-</div>
-<div class="bg">
-</div><br>
-	</nav>
+				<?php require_once ("nav.html"); ?>
 	
-	<img src="img/immagina.png" class="flex">
-	<div class="bottonialcentro">
-			<a href="#" class="button">Menù </a>
-		<a href="#" class="button">Prenota</a>
-		<a href="#" class="button">Chi siamo</a>
-	</div>
-
-	<br><br>
-	<div class="piatti">
-		<a href="#" class="button">Primo <img src="img/primo.svg" width="80%" height="80%" padding-bottom="100px"></a>
-		<a href="#" class="button">Primo <img src="img/primo.svg" width="80%" height="80%"></a>
-		<a href="#" class="button">Primo <img src="img/primo.svg" width="80%" height="80%"></a><br><br>
-	</div>
-	</div>
-	</div>
+				<img src="img/immagina.png" class="flex">
+				<div class="bottonialcentro">
+					<a href="#" class="button">Menù </a>
+					<a href="#" class="button">Prenota</a>
+					<a href="#" class="button">Chi siamo</a>
+				</div>
+				<br><br>
+				<div class="piatti">
+					<a href="#" class="button">Primo <img src="img/primo.svg" width="80%" height="80%" padding-bottom="100px"></a>
+					<a href="#" class="button">Primo <img src="img/primo.svg" width="80%" height="80%"></a>
+					<a href="#" class="button">Primo <img src="img/primo.svg" width="80%" height="80%"></a><br><br>
+				</div>
+			</div>
+		
 	<div class="pparte">
 		<br>
 		<img src="img/primo.svg">

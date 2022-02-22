@@ -1,0 +1,30 @@
+<html>  	
+    <div class="bg">
+        <!--NAVBAR -->
+		<nav class="navbar navbar-light" style="background-color: #ff6900;">
+		    <br><a class="navbar-brand" href="#">
+			<img src="img/logo_large_b.png" width="333" height="108" class="d-inline-block align-top" alt="">
+		    </a>
+		    <div class="dropdown">
+                <button class="dropbtn"><a href="menu.php">Menù</a></button>
+                <div class="dropdown-content">
+                    <a href="#">Primi</a>
+                    <a href="#">Secondi</a>
+                    <a href="#">Dolci</a>
+                </div>
+            </div>
+  
+            <div class="dropdown">
+                <button class="dropbtn"> <?php echo $logged ?></button>
+            <div class="dropdown-content">
+                <a href="#">Informazioni</a>
+                <a href="#">Modifica account</a>
+                <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="logout.php">Logout</a>
+                </div>
+            </div>
+            <div class="bg">
+            </div><br>
+	    </nav>
+    </div> 
+</html>        

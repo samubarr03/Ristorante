@@ -45,7 +45,7 @@ function component($nome, $prezzo, $img, $id){
                             </p>
                             <h5>
                                 
-                                <span class=\"price\">$$prezzo</span>
+                                <span class=\"price\">$prezzo</span>
                             </h5>
 
                             <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">aggiungi al carrello <i class=\"fas fa-shopping-cart\"></i></button>
