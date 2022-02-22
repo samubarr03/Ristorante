@@ -305,12 +305,12 @@
 <footer class="page-footer font-small" style="background-color: #ff8733;">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-2" style=padding-top:1%;><center><img src="img/logo_small_icon_only_inverted.png"  width="128" height="128" ></center> </div>
-            <div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooterb">About our food</a></center></div>
-            <div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooter">Aiuto</a></center></div>
-            <div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooter">Feedback</a></center></div>
-            <div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooterb">Seguici sui social</a></center></div>
-            <div class="col-sm-2" style=padding-top:1%;><center>⠀</center> </div>
+            <div class="col" style=padding-top:1%;><center><img src="img/logo_small_icon_only_inverted.png"  width="128" height="128" ></center> </div>
+            <div class="col" style=padding-top:2%;><center><a href="#" class="buttonfooterb">About our food</a></center></div>
+            <div class="col" style=padding-top:2%;><center><a href="#" class="buttonfooter">Aiuto</a></center></div>
+            <div class="col" style=padding-top:2%;><center><a href="#" class="buttonfooter">Feedback</a></center></div>
+            <div class="col" style=padding-top:2%;><center><a href="#" class="buttonfooterb">Seguici sui social</a></center></div>
+            <div class="col" style=padding-top:1%;><center>⠀</center> </div>
         </div>
     </div>
 <!-- Footer Elements -->
