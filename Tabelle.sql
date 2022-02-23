@@ -70,6 +70,7 @@ CREATE TABLE PortataContieneIngrediente(
 
 CREATE TABLE ClienteAggiungePortata(
 	id int REFERENCES PORTATA (id),
+	quantita int,
 	email varchar(255) REFERENCES Cliente (email)
 );
 
@@ -103,7 +104,7 @@ INSERT INTO Portata VALUES ('01','Gnocchi al pesto','Primi/img1.jpg','5,50','16'
 
 INSERT INTO Portata VALUES ('02','Spaghetti al sugo','Primi/img2.jpg','5,50','16','primo');
 
-INSERT INTO Portata VALUES ('03','Risotto allo zafferano','Primi/img3.jpg','6,90','16','primo');
+INSERT INTO Portata VALUES ('3','Risotto allo zafferano','Primi/img3.jpg','6,90','16','primo');
 
 INSERT INTO Portata VALUES ('04','Lasagna','Primi/img4.jpg','6,50','10','primo');
 

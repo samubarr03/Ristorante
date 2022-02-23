@@ -82,7 +82,7 @@ session_start();
 	
 				<img src="img/immagina.png" class="flex">
 				<div class="bottonialcentro">
-					<a href="#" class="button">Menù </a>
+					<a href="menu.php" class="button">Menù </a>
 					<a href="#" class="button">Prenota</a>
 					<a href="#" class="button">Chi siamo</a>
 				</div>

@@ -3,48 +3,41 @@
     require_once ('product.php');
     session_start();
 
-    if (isset($_POST['add']) && isset($_SESSION['email']) ){
-        $sql = "INSERT INTO ClienteAggiungePortata
-        VALUES ('{$id}','{$_SESSION['email']}')";
+	if(!isset($_SESSION['email'])){
+	
+        $logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="img/user.png" width="50" height="40">Accedi</a>';
     
-        if ($conn->query($sql) === TRUE) {}
-        else {
-            echo "Error: hai già inserito questa portata nel carrello" . $sql . "<br>" . $conn->error;
         }
-    }
-    else{
-
-        header("location: login.html");
-
-
-    }
-
+        else{
+            $logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "img/utente.png" style = "width: 20px; height: 20px;">Loggato</a>';
+            
+    
+        }
+        require_once ('data.php');
 
 
-?>
 
 ?>
+
+
 <html>
     <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
-
-        <!-- LINK FOOTER -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="css/assets/style.css">
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <!-- Development version -->
-        <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+			<!-- Required meta tags -->
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+			<!-- Bootstrap CSS -->
+			<link rel="stylesheet" href="css/bootstrap.min.css">
+			<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+			<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+			<script src="js/bootstrap.bundle.min.js"></script>
+			<!-- Development version -->
+			<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+			<title>Prenota-One</title>
+			<link rel="stylesheet" href="css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <title>Prenota-One</title>
     </head>
     <style>

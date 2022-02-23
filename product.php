@@ -48,7 +48,7 @@ function component($nome, $prezzo, $img, $id){
                                 <span class=\"price\">$prezzo</span>
                             </h5>
 
-                            <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">aggiungi al carrello <i class=\"fas fa-shopping-cart\"></i></button>
+                            <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
                              <input type='hidden' name='product_id' value='$id'>
                         </div>
                     </div>
