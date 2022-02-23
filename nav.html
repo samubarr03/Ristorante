@@ -3,22 +3,27 @@
         <!--NAVBAR -->
 		<nav class="navbar navbar-light" style="background-color: #ff6900;">
 		    <br><a class="navbar-brand" href="#">
-			<img src="img/logo_large_b.png" width="333" height="108" class="d-inline-block align-top" alt="">
-		    </a>
+		    <a href="index.php"><img src="img/logo_large_b.png" width="333" height="108" class="d-inline-block align-top" alt=""></a></a>
 		    <div class="dropdown">
                 <button class="dropbtn"><a href="menu.php">Menù</a></button>
                 <div class="dropdown-content">
-                    <a href="#">Primi</a>
-                    <a href="#">Secondi</a>
-                    <a href="#">Dolci</a>
+                    <a href="menu.php?action=aggiungi&id=primo">Primi</a>
+                    <a href="menu.php?action=aggiungi&id=carne">Carne</a>
+                    <a href="menu.php?action=aggiungi&id=pesce">Pesce</a>
+                    <a href="menu.php?action=aggiungi&id=contorno">Contorni</a>
+                    <a href="menu.php?action=aggiungi&id=dolce">Dolci</a>
+                    <a href="menu.php?action=aggiungi&id=pizza">Pizze</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn"><a href="menu.php">Catering</a></button>
+                <div class="dropdown-content">
                 </div>
             </div>
   
             <div class="dropdown">
-                <button class="dropbtn"> <?php echo $logged ?></button>
+                <button class="dropbtn"> bibo<php echo $logged ?></button>
             <div class="dropdown-content">
-                <a href="#">Informazioni</a>
-                <a href="#">Modifica account</a>
                 <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php">Logout</a>
                 </div>

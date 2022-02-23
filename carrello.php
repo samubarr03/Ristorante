@@ -1,5 +1,7 @@
 <?php
-session_start();
+	session_start();
+	require_once ('product.php');
+
 	if(!isset($_SESSION['email'])){
 	    header("location: login.html");
 	}
@@ -8,17 +10,18 @@ session_start();
 	}
 	require_once ('data.php');
     $email=$_SESSION['email'];
-    $var=$_GET['id'];  
-    echo $var;
 
-    $sql = "INSERT INTO ClienteAggiungePortata
-    VALUES ('{$var}','1','{$email}')";
+	if(isset($_GET['id'])) {
+		$var=$_GET['id'];  
 
-    if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-    } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+		$sql = "INSERT INTO ClienteAggiungePortata
+		VALUES ('{$var}','1','{$email}')";
+
+		if ($conn->query($sql) === TRUE) {
+		} else {
+			echo "<script type='text/javascript'>alert('Non puoi prendere lo stesso prodotto più di una volta ');</script>";
+		}
+	}
 ?>
 <html lang="en">
 		<head>
@@ -95,23 +98,24 @@ session_start();
 					<a href="#" class="button">Chi siamo</a>
 				</div>
 
-	        </div>
+	        
 
-        <div class="container">
-        <div class="row text-center py-5">
-            <?php
-                $sql = "SELECT * FROM ClienteAggiungePortata ORDER BY id ASC";
-                $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
-                if(mysqli_num_rows($resultset) > 0)
-                    {
-                        while($row = mysqli_fetch_array($resultset))
-                        {
-                            component($row['nome'], $row['prezzo'], $row['img'], $row['id']);
-                        }
-                    }    
-                    ?>
-        </div>
-    </div>  
+				<div class="container">
+					<div class="row text-center py-5">
+						<?php
+							$sql = "SELECT * FROM ClienteAggiungePortata,Portata where ClienteAggiungePortata.num=Portata.id ORDER BY id ASC";
+							$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+							if(mysqli_num_rows($resultset) > 0)
+								{
+								while($row = mysqli_fetch_array($resultset))
+								{
+									component($row['nome'], $row['prezzo'], $row['img'], $row['id']);
+								}
+							}    
+						?>
+					</div>
+				</div> 
+			</div> 
 		<!-- Footer -->
 	<footer class="page-footer font-small" style="background-color: #ff8733;">
 		<div class="container-fluid">

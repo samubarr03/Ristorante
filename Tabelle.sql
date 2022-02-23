@@ -69,7 +69,7 @@ CREATE TABLE PortataContieneIngrediente(
 
 
 CREATE TABLE ClienteAggiungePortata(
-	id int REFERENCES PORTATA (id),
+	num int UNIQUE REFERENCES PORTATA (id) ,
 	quantita int,
 	email varchar(255) REFERENCES Cliente (email)
 );

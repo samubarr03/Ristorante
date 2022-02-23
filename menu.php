@@ -16,6 +16,31 @@
         require_once ('data.php');
 
 
+        
+        if(isset($_GET['id'])) {
+            $var=$_GET['id'];
+            if( $var=="primo"){
+                $sql = "SELECT * FROM portata where tipo='primo' ORDER BY id ASC";    
+            }
+            if( $var=="pizza"){
+                $sql = "SELECT * FROM portata where tipo='pizza' ORDER BY id ASC";    
+            }
+            if( $var=="pesce"){
+                $sql = "SELECT * FROM portata where tipo='pesce' ORDER BY id ASC";    
+            }
+            if( $var=="contorno"){
+                $sql = "SELECT * FROM portata where tipo='contorno' ORDER BY id ASC";    
+            }
+            if( $var=="carne"){
+                $sql = "SELECT * FROM portata where tipo='carne' ORDER BY id ASC";    
+            }
+            if( $var=="dolce"){
+                $sql = "SELECT * FROM portata where tipo='dolce' ORDER BY id ASC";    
+            }
+        }
+        else{
+            $sql = "SELECT * FROM portata ORDER BY id ASC";    
+        }
 
 ?>
 
@@ -260,7 +285,7 @@
     <div class="container">
         <div class="row text-center py-5">
             <?php
-                $sql = "SELECT * FROM portata ORDER BY id ASC";
+                
                 $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
                 if(mysqli_num_rows($resultset) > 0)
                     {
