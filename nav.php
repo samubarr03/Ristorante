@@ -1,16 +1,22 @@
 <?php
+$admin=0;
+echo $logged;
 
-	if(!isset($_SESSION['email'])){
-	
-		$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="img/user.png" width="50" height="40">Accedi</a>';
+if(!isset($_SESSION['email'])){
+	//
+		$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="img/user.png" width="50px" height="40px">Accedi</a>';
+        if($_SESSION['email']=='admin@gmail.com'){
+            $admin=1;    
 
+        }
 	}
 	else{
 		$logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "img/utente.png" style = "width: 20px; height: 20px;">Loggato</a>';
 		
 
 	}
-echo $logged;
+    
+
 ?>
 
 <html>  	
@@ -35,14 +41,21 @@ echo $logged;
                 <div class="dropdown-content">
                 </div>
             </div>
-  
+        <PHP    if($admin != 0){ ?>
+            <button class="dropbtn"><a href="AddPortata.php">Inserisci Portata</a></button>
+                <div class="dropdown-content">
+            </div>
+            <php } ?>
             <div class="dropdown">
-                <button class="dropbtn"> <php echo("Hello world!"); ?> </button>
+                <button class="dropbtn"> <php echo $logged; ?>gino </button>
             <div class="dropdown-content">
                 <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php">Logout</a>
+                    <a class="dropdown-item" href="Ordini.php">Ordini</a>
+                    <a class="dropdown-item" href="carrello.php">carrello</a>
                 </div>
             </div>
+            
             <div class="bg">
             </div><br>
 	    </nav>

@@ -13,9 +13,10 @@
 
 	if(isset($_GET['id'])) {
 		$var=$_GET['id'];  
-
+		$quantita=$_GET['qta'];
+		
 		$sql = "INSERT INTO ClienteAggiungePortata
-		VALUES ('{$var}','1','{$email}')";
+		VALUES ('{$var}','{$email}','{$email}')";
 
 		if ($conn->query($sql) === TRUE) {
 		} else {
@@ -89,7 +90,7 @@
 		<body>
 			<div class="bg">
         <!--NAVBAR -->
-				<?php require_once ("nav.html"); ?>
+				<?php require_once ("nav.php"); ?>
 	
 				<img src="img/immagina.png" class="flex">
 				<div class="bottonialcentro">

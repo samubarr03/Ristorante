@@ -279,7 +279,7 @@
     <body>
         <div class="bg">
         <!--NAVBAR -->
-        <?php require_once ("nav.html"); ?> 
+        <?php require_once ("nav.php"); ?> 
     <!-- inizia parte menu -->
 
     <div class="container">
