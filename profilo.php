@@ -4,7 +4,7 @@ session_start();
 	
 	header("location: login.html");
 	}
-	require_once ('data.php');
+
 ?>
 <html lang="en">
 		<head>
