@@ -1,3 +1,18 @@
+<?php
+
+	if(!isset($_SESSION['email'])){
+	
+		$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="img/user.png" width="50" height="40">Accedi</a>';
+
+	}
+	else{
+		$logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "img/utente.png" style = "width: 20px; height: 20px;">Loggato</a>';
+		
+
+	}
+echo $logged;
+?>
+
 <html>  	
     <div class="bg">
         <!--NAVBAR -->
@@ -22,7 +37,7 @@
             </div>
   
             <div class="dropdown">
-                <button class="dropbtn"> bibo<php echo $logged ?></button>
+                <button class="dropbtn"> <php echo("Hello world!"); ?> </button>
             <div class="dropdown-content">
                 <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php">Logout</a>

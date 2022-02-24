@@ -78,7 +78,7 @@ session_start();
 		<body>
 			<div class="bg">
         <!--NAVBAR -->
-				<?php require_once ("nav.html"); ?>
+				<?php require_once ("nav.php"); ?>
 	
 				<img src="img/immagina.png" class="flex">
 				<div class="bottonialcentro">

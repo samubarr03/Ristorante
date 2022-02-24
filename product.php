@@ -26,10 +26,10 @@ function component($nome, $prezzo, $img, $id){
     ";
     
    */"<div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
-                <form action=\"index.php\" method=\"post\">
-                    <div class=\"card shadow\" style=\"width: 18rem; height: 25rem; border-radius:0.25rem;\">
+                <div>
+                    <div class=\"card shadow\" style=\"width: 18rem; height: 30rem; border-radius:0.25rem; \">
                         <div>
-                            <img src=img/Immagini/$img alt=\"Image1\" class=\"img-fluid card-img-top\" style=\"width: 18rem; height: 14rem;\">
+                            <img src=img/Immagini/$img alt=\"Image1\" class=\"img-fluid card-img-top\" style=\"width: 18rem; height: 14rem; \">
                         </div>
                         <div class=\"card-body\">
                             <h5 class=\"card-title\">$nome</h5>
@@ -115,7 +115,7 @@ function component($nome, $prezzo, $img, $id){
                             </style>  
                                 <div class=\"number-input\">
                                     <button onclick=\"this.parentNode.querySelector('input[type=number]').stepDown()\" ></button>
-                                    <input class=\"quantity\" min=\"0\" name=\"quantity\" value=\"1\" type=\"number\">
+                                    <input class=\"quantity\" min=\"0\" name=\"quantity\" value=\"1\" type=\"number\" >
                                     <button onclick=\"this.parentNode.querySelector('input[type=number]').stepUp()\" class=\"plus\"></button>
                                 </div>
                             </h1>
@@ -123,7 +123,7 @@ function component($nome, $prezzo, $img, $id){
                              <input type='hidden' name='product_id' value='$id'>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
     ";
     echo $element;
