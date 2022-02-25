@@ -12,7 +12,7 @@ session_start();
         {
             while($row = mysqli_fetch_array($resultset))
             {
-                component($row['nome'], $row['cognome'], $row['img'], $row['email'], $row['email'] );
+                component($row['nome'], $row['cognome'], $row['img'], $row['email'], $row['img'], $row['telefono'], $row['citta'], $row['via'], $row['civico']  );
             }
         } 
 ?>
@@ -353,8 +353,9 @@ session_start();
         <div class="titolo">
         <center><h1><b>INFORMAZIONI UTENTE</b></h1></center>
         </div>
-        <div class="fotoprofilo">           
-            <img src="img/messi.jpg" style="width:100%">
+        <div class="fotoprofilo">  
+
+        <img src=img/Immagini/<?php $row['img'] ?> style="width:100%">
         </div>
         <!--<input name="nome" ID="abc" type="text" placeholder="Inserire nome"<br>
         <input name="cognome" ID="abc" type="text" placeholder="Inserire cognome"<br>

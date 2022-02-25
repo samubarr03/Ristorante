@@ -17,7 +17,7 @@ CREATE TABLE Utente(
 	civico int,
 	telefono varchar(255) NOT NULL,
 	password varchar(255) NOT NULL,
-    foto varcha(255)
+    foto varchar(255)
 );
 
 CREATE TABLE CartaCredito(
