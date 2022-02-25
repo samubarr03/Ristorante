@@ -1,17 +1,9 @@
 /*
 
 	SQL per la creazione delle tabelle
-	del database della nostra azienda
-	
-	Schema logico:
-
-	UTENTE(id,nome,cognome,CF,metodoPagamento,indirizzo,dataNascita,telefono,email,password)
-	CartaCredito(nCarta,CVV,idUTENTE)
-	Spedizione(id,indirizzo,data,ora,idUTENTE)
-	Portata(id,nome,prezzo,tempoPreparazione,idSpedizione,nomeTipo)
-	Tipo(nome)
-	Ingrediente(nome)
-	PortataContieneIngredienti(idPortata,nomeIngrediente)
+	del database.
+    Le tabelle sono basate sullo schema E-R e logico presentate
+    nel file "Parte Database"
 
 */	
 
@@ -24,7 +16,8 @@ CREATE TABLE Utente(
 	via varchar(255),
 	civico int,
 	telefono varchar(255) NOT NULL,
-	password varchar(255) NOT NULL
+	password varchar(255) NOT NULL,
+    foto varcha(255)
 );
 
 CREATE TABLE CartaCredito(
@@ -33,14 +26,15 @@ CREATE TABLE CartaCredito(
 	nCarta int PRIMARY KEY,
 	scadenza  DATETIME,
 	CVV int,
+    email varchar(255),
 	email varchar(255) REFERENCES UTENTE  (email)
 
 );
 
 CREATE TABLE Spedizione(
 	id int PRIMARY KEY,
+    indirizzo varchar(255) NOT NULL,
 	email varchar(255) REFERENCES UTENTE  (email),
-	indirizzo varchar(255),
 	ordine Timestamp,
 	consegna DATETIME
 );
@@ -62,22 +56,16 @@ CREATE TABLE Portata(
 CREATE TABLE SpedizioneContienePortata(
     idSpedizione int REFERENCES SPEDIZIONE,
     idPortata int REFERENCES PORTATA,
+    concluso boolean,
     quantità int,
     PRIMARY KEY(id,id)
 );
 
 
-
  INSERT INTO utente VALUES ('smubarr03@gmail.com','sam','barr','ge','g','4','333333433','1d96ef8b084825443ced61612933de84fb4019a806b42fb19a45e3cb641f69ec');
-
- /*
-
-    Seguono le INSERT INTO volte a riempire le tuple del database
-    
-*/
 /*
 
-    Seguono le INSERT INTO volte a riempire le tuple del database
+    Seguono le INSERT INTO per riempire le tuple del database
     
 */
 
@@ -88,9 +76,18 @@ INSERT INTO Tipo VALUES ('pesce');
 INSERT INTO Tipo VALUES ('contorno');
 INSERT INTO Tipo VALUES ('dolce');
 INSERT INTO Tipo VALUES ('pizza');
+INSERT INTO Tipo VALUES ('bibita');
 
+/*
 
+    Lista piatti:
+    - Gnocchi al pesto
+    - Spaghetti al sugo
+    - Risotto allo zafferano
+    - Lasagna
+    - Lasagna al pesto
 
+*/
 
 INSERT INTO Portata VALUES ('01','Gnocchi al pesto','Primi/img1.jpg','5,50','16','Contiene: gnocchi, pesto, basilico, pinoli, pargmigiano','primo');
 
@@ -101,7 +98,6 @@ INSERT INTO Portata VALUES ('3','Risotto allo zafferano','Primi/img3.jpg','6,90'
 INSERT INTO Portata VALUES ('04','Lasagna','Primi/img4.jpg','6,50','30','Contiene: pasta sfoglia, aglio, cipolla bianca, manzo tritato, mozzarella, uovo, parmigiano','primo');
 
 INSERT INTO Portata VALUES ('05','Lasagna al pesto','Primi/img5.jpg','6,50','10','Contiene: pasta sfoglia, pesto, parmigiano','primo');
-
 
 /*
 
@@ -118,10 +114,8 @@ INSERT INTO Portata VALUES ('07','Spezzatino di maiale','Carne/img7.jpg','7,50',
 
 INSERT INTO Portata VALUES ('08','Pollo arrosto','Carne/img8.jpg','7,90','45','Contiene: pollo, erbe aromatiche, cipolla bianca, pepe','carne');
 
-
-
 /*
-    - Salmone
+    - Salmone alla griglia
     - Orata al forno
 */
 
@@ -140,7 +134,7 @@ INSERT INTO Portata VALUES ('10','Orata al forno','Pesce/img10.jpg','8,50','20',
 
 INSERT INTO Portata VALUES ('11','Insalata mista al basilico','Contorni/img11.jpg','3,70','4','Contiene: pomodori, peperoni, fave, olive, aceto, tonno, acciughe, cetrioli, ravanelli, sedano, basilico, cipolla rossa, aglio, carciofini','contorno');
 INSERT INTO Portata VALUES ('12','Insalata di riso','Contorni/img12.jpg','3,70','4','Contiene: riso, fontina, peperoni rossi, olive verdi, uova, tonno, mais, aceto di mele, prosciutto cotto, piselli, podorini datterini','contorno');
-INSERT INTO Portata VALUES ('13','Insalata di verdure','Contorni/img13.jpg','3,70','4','Contiene: ','contorno');
+INSERT INTO Portata VALUES ('13','Insalata di verdure','Contorni/img13.jpg','3,70','4','Contiene: cavolfiore, peperoni gialli, peperoni rossi, cipolline, fagiolini, fagiolini cannellini, curcuma, mais','contorno');
 
 /*
 
@@ -154,19 +148,17 @@ INSERT INTO Portata VALUES ('13','Insalata di verdure','Contorni/img13.jpg','3,7
 
 */
 
-INSERT INTO Portata VALUES ('14','Tiramisù','Dolci/img14.jpg','3','25','Contiene: ','dolce');
+INSERT INTO Portata VALUES ('14','Tiramisù','Dolci/img14.jpg','3','25','Contiene: mascarpone, uova, savoiardi, caffè, cacao amaro in polvere','dolce');
 
-INSERT INTO Portata VALUES ('15','Cheesecake','Dolci/img15.jpg','3,20','25','Contiene: ','dolce');
+INSERT INTO Portata VALUES ('15','Cheesecake','Dolci/img15.jpg','3,20','25','Contiene: biscotti, burro, panna liquida, formaggio fresco','dolce');
 
-INSERT INTO Portata VALUES ('16','Torta di mele','Dolci/img16.jpg','3,50','15','Contiene: ','dolce');
+INSERT INTO Portata VALUES ('16','Torta di mele','Dolci/img16.jpg','3,50','30','Contiene: mele, limoni, uova, burro, lievito instantaneo, latte, cannella','dolce');
 
-INSERT INTO Portata VALUES ('17','Torta della nonna','Dolci/img17.jpg','3,50','15','Contiene: ','dolce');
+INSERT INTO Portata VALUES ('17','Torta della nonna','Dolci/img17.jpg','3,50','40','Contiene: burro, uovo, buccia di limone, vaniglia, latte','dolce');
 
-INSERT INTO Portata VALUES ('18','Gelato alla vaniglia','Dolci/img18.jpg','1,60','3','Contiene: ','dolce');
+INSERT INTO Portata VALUES ('18','Gelato alla vaniglia','Dolci/img18.jpg','1,60','3','Contiene: latte, vaniglia','dolce');
 
-INSERT INTO Portata VALUES ('19','Gelato al cioccolato','Dolci/img19.jpg','1,60','3','Contiene: ','dolce');
-
-
+INSERT INTO Portata VALUES ('19','Gelato al cioccolato','Dolci/img19.jpg','1,60','3','Contiene: latte, cioccolato','dolce');
 
 /*
 
@@ -194,3 +186,24 @@ INSERT INTO Portata VALUES ('24','4 stagioni','Pizze/img24.jpg','6,40','20','Pom
 INSERT INTO Portata VALUES ('25','Prosciutto e funghi','Pizze/img25.jpg','6,40','14','Pomodoro, mozzarella, prosciutto cotto, funghi','pizza');
 
 INSERT INTO Portata VALUES ('26','Pesto','Pizze/img26.jpg','6,50','14','Pesto, mozzarella','pizza');
+
+/*
+
+    Lista bibite:
+    - Coca-cola
+    - Fanta
+    - Thè alla pesca
+    - Thè al limone
+    - Heneiken
+
+*/
+
+INSERT INTO Portata VALUES ('27','Coca-cola','Bibite/img27.jpg','2,50','0','Lattina da 33cl','bibita');
+
+INSERT INTO Portata VALUES ('28','Fanta','Bibite/img28.jpg','2,50','0','Lattina da 33cl','bibita');
+
+INSERT INTO Portata VALUES ('29','Thè alla pesca','Bibite/img29.jpg','2,30','0','Lattina da 32cl','bibita');
+
+INSERT INTO Portata VALUES ('30','Thè al limone','Bibite/img30.jpg','2,30','0','Lattina da 32cl','bibita');
+
+INSERT INTO Portata VALUES ('31','Heneiken','Bibite/img31.jpg','','0','Bottiglia da 35cl','bibita');

@@ -47,7 +47,7 @@ if(!isset($_SESSION['email'])){
             </div>
             <php } ?>
             <div class="dropdown">
-                <button class="dropbtn"> <php echo $logged; ?>gino </button>
+                <button class="dropbtn"> <?php echo $logged; ?> </button>
             <div class="dropdown-content">
                 <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php">Logout</a>
