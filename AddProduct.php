@@ -1,27 +1,11 @@
 <?php
-	session_start();
-	require_once ('product.php');
+session_start();
+if($_SESSION['email']!='admin@gmail.com'){
+	
+        header("location: index.php"); 
+	}
 
-	if(!isset($_SESSION['email'])){
-	    header("location: login.html");
-	}
-	else{
-		$logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "img/utente.png" style = "width: 20px; height: 20px;"></a>';	
-	}
 	require_once ('data.php');
-    $email=$_SESSION['email'];
-
-	if(isset($_GET['id'])) {
-		$var=$_GET['id'];  
-
-		$sql = "INSERT INTO SpedizioneContienePortata
-		VALUES (''1,'$var','1')";
-
-		if ($conn->query($sql) === TRUE) {
-		} else {
-			echo "<script type='text/javascript'>alert('Non puoi prendere lo stesso prodotto più di una volta ');</script>";
-		}
-	}
 ?>
 <html lang="en">
 		<head>
@@ -89,7 +73,7 @@
 		<body>
 			<div class="bg">
         <!--NAVBAR -->
-				<?php require_once ("nav.html"); ?>
+				<?php require_once ("nav.php"); ?>
 	
 				<img src="img/immagina.png" class="flex">
 				<div class="bottonialcentro">
@@ -97,25 +81,10 @@
 					<a href="#" class="button">Prenota</a>
 					<a href="#" class="button">Chi siamo</a>
 				</div>
+				<br><br>
 
-	        
 
-				<div class="container">
-					<div class="row text-center py-5">
-						<?php
-							$sql = "SELECT * FROM ClienteAggiungePortata,Portata where ClienteAggiungePortata.num=Portata.id ORDER BY id ASC";
-							$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
-							if(mysqli_num_rows($resultset) > 0)
-								{
-								while($row = mysqli_fetch_array($resultset))
-								{
-									component($row['nome'], $row['prezzo'], $row['img'], $row['id']);
-								}
-							}    
-						?>
-					</div>
-				</div> 
-			</div> 
+    
 		<!-- Footer -->
 	<footer class="page-footer font-small" style="background-color: #ff8733;">
 		<div class="container-fluid">
@@ -128,12 +97,12 @@
 				<div class="col-sm-2" style=padding-top:1%;><center>⠀</center> </div>
 			</div>
 		</div>
-
-    <!-- Copyright -->
+	</div>
+<!-- Copyright -->
 <div class="footer-copyright text-center py-3">© 2020 Copyright:
   <a href="#">SCV.com</a>
 </div>
-    </footer>
+</footer>
 	</body>
 	<script src="js/bootstrap.bundle.min.js"></script>
 	</html>

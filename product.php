@@ -1,7 +1,23 @@
 <?php
+function rimuovii(){
+    $sql = "DELETE * FROM Portata WHERE id = '$id'" ;
+    if ($conn->query($sql) === TRUE) {
+    header("location: menu.php");
+    } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
 
+function dec(){
+    $num=$num-1;
+}
+
+function inc(){
+    $num=$num+1;
+}
 
 function component($nome, $prezzo, $img, $id){
+    $num=1;
     $element =/* "
     <div class= \"col-md-3 col-sm-6 my-3 my-md-0\">	
     <form method=\"post\" action=\"index.php?action=add&id=<?php echo $id; ?>\">
@@ -25,8 +41,9 @@ function component($nome, $prezzo, $img, $id){
     </div>
     ";
     
-   */"<div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
-                <div>
+   */
+  "<div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
+                <form>
                     <div class=\"card shadow\" style=\"width: 18rem; height: 30rem; border-radius:0.25rem; \">
                         <div>
                             <img src=img/Immagini/$img alt=\"Image1\" class=\"img-fluid card-img-top\" style=\"width: 18rem; height: 14rem; \">
@@ -114,18 +131,35 @@ function component($nome, $prezzo, $img, $id){
                                 }
                             </style>  
                                 <div class=\"number-input\">
-                                    <button onclick=\"this.parentNode.querySelector('input[type=number]').stepDown()\" ></button>
-                                    <input class=\"quantity\" min=\"0\" name=\"quantity\" value=\"1\" type=\"number\" >
-                                    <button onclick=\"this.parentNode.querySelector('input[type=number]').stepUp()\" class=\"plus\"></button>
+                                    <button onclick=\"dec()\" ></button>
+                                    <input type=\"number\"  min=\"0\" name=\"quantity\" value='$num' type=\"number\" >
+                                    <button onclick=\"inc()\" class=\"plus\"></button>
                                 </div>
                             </h1>
-                            <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
+                            <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"rim\">  <a href=\"carrello.php?id=$id&quantita=\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
                              <input type='hidden' name='product_id' value='$id'>
+                             
+
+
+
+                            ";
+                                 if($_SESSION['email']!='admin@gmail.com'){
+                                     $element=$element."<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"rimuovi\" onclick=\"rimuovii()\">  <a href=\"menu.php\">Rimuovi dal menu.</a><i class=\"fas fa-shopping-cart\"></i></button> ";   
+                                      
+                                 }
+                                 
+                            $element=$element." 
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
     ";
+
+    
+
+
     echo $element;
 }
+
+?>
 

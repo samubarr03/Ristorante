@@ -10,7 +10,7 @@
 		
 
 	}
-echo $logged;
+
 ?>
 
 <html>  	
@@ -19,7 +19,20 @@ echo $logged;
 		<nav class="navbar navbar-light" style="background-color: #ff6900;">
 		    <br><a class="navbar-brand" href="#">
 		    <a href="index.php"><img src="img/logo_large_b.png" width="333" height="108" class="d-inline-block align-top" alt=""></a></a>
-		    <div class="dropdown">
+            <?php 		if($_SESSION['email']=='admin@gmail.com'){ ?>
+            
+                <div class="dropdown">
+                <button class="dropbtn"><a href="index.php.php">Admin</a></button>
+                <div class="dropdown-content">
+                    <a href="menu.php?action=aggiungi&id=primo">Aggiungi portate</a>
+                    <a href="menu.php?action=aggiungi&id=carne">Modifica portate</a>
+                    <a href="menu.php?action=aggiungi&id=pesce">Visualizza ordini</a>
+
+                </div>
+            </div>
+
+             <?php } ?>   
+            <div class="dropdown">
                 <button class="dropbtn"><a href="menu.php">Menù</a></button>
                 <div class="dropdown-content">
                     <a href="menu.php?action=aggiungi&id=primo">Primi</a>
@@ -37,7 +50,7 @@ echo $logged;
             </div>
   
             <div class="dropdown">
-                <button class="dropbtn"> <php echo("Hello world!"); ?> </button>
+                <button class="dropbtn"> <?php echo $logged; ?> </button>
             <div class="dropdown-content">
                 <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php">Logout</a>

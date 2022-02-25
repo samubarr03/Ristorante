@@ -31,7 +31,7 @@
             VALUES ('{$email}','{$nome}','{$cognome}','{$città}','{$via}','{$civico}','{$telefono}','{$password}')";
         
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+            header("location: index.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
