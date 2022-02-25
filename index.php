@@ -1,8 +1,8 @@
 <?php
 session_start();
 	if(!isset($_SESSION['email'])){
-	
-		$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="img/user.png" width="50" height="40">Accedi</a>';
+	//
+		$logged = '<a href="login.html" class="w3-bar-item w3-button"><img src="img/user.png" width="50px" height="40px">Accedi</a>';
 
 	}
 	else{
