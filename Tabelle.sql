@@ -26,15 +26,14 @@ CREATE TABLE CartaCredito(
 	nCarta int PRIMARY KEY,
 	scadenza  DATETIME,
 	CVV int,
-    email varchar(255),
 	email varchar(255) REFERENCES UTENTE  (email)
 
 );
 
 CREATE TABLE Spedizione(
 	id int PRIMARY KEY,
-    indirizzo varchar(255) NOT NULL,
 	email varchar(255) REFERENCES UTENTE  (email),
+	indirizzo varchar(255),
 	ordine Timestamp,
 	consegna DATETIME
 );
@@ -53,16 +52,14 @@ CREATE TABLE Portata(
 	tipo varchar(255) REFERENCES TIPO  (nome)
 );
 
-CREATE TABLE SpedizioneContienePortata(
-    idSpedizione int REFERENCES SPEDIZIONE,
-    idPortata int REFERENCES PORTATA,
-    concluso boolean,
-    quantità int,
-    PRIMARY KEY(id,id)
+CREATE TABLE ClienteAggiungePortata(
+	num int UNIQUE REFERENCES PORTATA (id) ,
+	quantita int,
+	email varchar(255) REFERENCES Cliente (email)
 );
 
 
- INSERT INTO utente VALUES ('smubarr03@gmail.com','sam','barr','ge','g','4','333333433','1d96ef8b084825443ced61612933de84fb4019a806b42fb19a45e3cb641f69ec');
+ INSERT INTO utente VALUES ('smubarr03@gmail.com','sam','barr','ge','g','4','333333433','1d96ef8b084825443ced61612933de84fb4019a806b42fb19a45e3cb641f69ec','');
 /*
 
     Seguono le INSERT INTO per riempire le tuple del database
