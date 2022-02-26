@@ -5,17 +5,18 @@ session_start();
 	}
     require_once ('data.php');
 
-    $sql = "SELECT * FROM Utente where email=$_SESSION['email']";
+    $sql = "SELECT * FROM Utente where email= '".$_SESSION['email']."'";
     
     $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
     if(mysqli_num_rows($resultset) > 0)
         {
-            while($row = mysqli_fetch_array($resultset))
-            {
-                component($row['nome'], $row['cognome'], $row['img'], $row['email'], $row['img'], $row['telefono'], $row['citta'], $row['via'], $row['civico']  );
-            }
+            $row = mysqli_fetch_array($resultset);
+            
         } 
+       
 ?>
+
+
 <html lang="en">
         <head>
             <!-- Required meta tags -->
@@ -324,30 +325,8 @@ session_start();
           <body>
         <div class="bg">
          <!--NAVBAR -->
-        <div class="ind">
-        <nav class="navbar navbar-light" style="background-color: #ff6900;">
-            <a class="navbar-brand" href="index.php">
-                <img src="img/logo_large_b.png" width="333" height="108" class="d-inline-block align-top" alt="">
-            </a>
-            <div class="dropdown">
-                <button class="dropbtn">Dropdown</button>
-                <div class="dropdown-content">
-                    <a href="info.php">Chi siamo</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">Account</button>
-                <div class="dropdown-content">
-                <a href="#">Informazioni</a>
-                <a href="modifica.php">Modifica</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Logout</a>
-            </div>
-            </div>
-            </div>
-        </nav>
+         <?php require_once ("nav.php"); ?>
+
     <div class="profilo">
         <br>
         <div class="titolo">
@@ -355,7 +334,7 @@ session_start();
         </div>
         <div class="fotoprofilo">  
 
-        <img src=img/Immagini/<?php $row['img'] ?> style="width:100%">
+        <img src=img/Immagini/<?php $row['img'] ?> alt="Girl in a jacket" style="width:100%">
         </div>
         <!--<input name="nome" ID="abc" type="text" placeholder="Inserire nome"<br>
         <input name="cognome" ID="abc" type="text" placeholder="Inserire cognome"<br>
@@ -364,15 +343,15 @@ session_start();
         <input type="radio" name="sesso" value="Maschio"/><label>M</label> 
         <input type="radio" name="sesso" value="Femmina"/><label>F</label> 
         <br><input ID="invia" type="submit" value="Invia"><br>⠀-->
-        <form method="POST" action="./action_page.php">
+        <div method="POST" action="./action_page.php">
             <div class="info">  
-                    <h2>⠀Nome:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder="Cristiano"></div><br>
-                <br><h2>⠀Cognome:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder="Ronaldo"></div><br>
-                <br><h2>⠀Email:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder="cr7@gmail.com"></div><br>
-                <br><h2>⠀Data di nascita:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder="7/7/1977"></div><br>
+                    <h2>⠀Nome:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder=<?php echo $row['nome']; ?>></div><br>
+                <br><h2>⠀Cognome:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder=<?php echo $row['cognome']; ?>></div><br>
+                <br><h2>⠀Email:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder=<?php echo $row['email']; ?>></div><br>
+                <br><h2>⠀Telefono:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder=<?php echo $row['telefono']; ?>></div><br>
                 <h4>⠀</h4>
             </div><br>
-        </form>
+            </div>
             <div style="clear:both;"></div>
             <a href="#" class="button">Carica foto</a>
             <input ID="invia" type="submit" value="Salva">
