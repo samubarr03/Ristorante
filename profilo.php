@@ -355,18 +355,21 @@ session_start();
             </div><br>
             </div>
             <div style="clear:both;"></div>
-
-            <form action="upload.php" method="post" enctype="multipart/form-data" name="upload_immagine">
-            Scegli immagine <input name="img" type="file" />
-            <input type="submit" name="carica" value="carica" />
-            </form>
+        
+    <!--<a href="#" class="button">Carica foto</a>
+        <input ID="invia" type="submit" value="Salva">
+    -->    
     
-            <input ID="invia" type="submit" value="Salva">
-            </form>
+        <form action="upload.php" method="post" enctype="multipart/form-data" name="upload_immagine">
+        Scegli immagine <input name="img" type="file" />
+        <input type="submit" name="carica" value="carica" />
+        </form>
+    <input ID="invia" type="submit" value="Salva">
+        </div>
     
-        <br>
-        <div style="clear:both;"></div>
-            </div>
+    <br>
+    <div style="clear:both;"></div>
+    
         <!-- Footer -->
     <footer class="page-footer font-small" style="background-color: #ff8733;">
         <div class="container-fluid">

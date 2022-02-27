@@ -112,7 +112,7 @@ function component($nome, $prezzo, $img, $id){
                         if(isset($_SESSION['email'])){
                             if($_SESSION['email']=="admin@gmail.com"){
                                 $element=$element."
-                                <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"rem\">  <a href=\"carrello.php?action=rimuovi&id=$id&qta=$qta\">Rimuovi Dal carrello al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>";          
+                                <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"rem\">  <a href=\"carrello.php?action=rimuovi&id=$id\">Rimuovi dal menù</a><i class=\"fas fa-shopping-cart\"></i></button>";          
                             } 
                         }  
                         

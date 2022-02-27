@@ -345,24 +345,17 @@ if($_SESSION['email']!='admin@gmail.com'){
         <input type="radio" name="sesso" value="Maschio"/><label>M</label> 
         <input type="radio" name="sesso" value="Femmina"/><label>F</label> 
         <br><input ID="invia" type="submit" value="Invia"><br>⠀-->
-        <form method="POST" action="UploadPortata.php">
+        <form method="POST" action="UploadPortata.php" enctype="multipart/form-data">
             <div class="info">  
                     <h2>⠀Nome:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" ></div><br>
                 <br><h2>Descrizione:</h2><div class="infoscritte"><input name="descrizione" ID="abc" type="text" >></div><br>      
                 <br><h2>Tempo Preparazione:</h2><div class="infoscritte"><input name="tempoPreparazione" ID="abc" type="text" ></div><br>
                 <br><h2>Prezzo:</h2><div class="infoscritte"><input name="prezzo" ID="abc" type="text" ></div><br>
 				<br><h2>tipo:</h2><div class="infoscritte"><input name="tipo" ID="abc" type="text" ></div><br>
-                <h4>⠀</h4>
+                <br><h2>Scegli immagine </h2> <input name="img" type="file" />
+				<h4>⠀</h4>
             </div><br>
-            </div>
-            <div style="clear:both;"></div>
-
-            <div  method="post" enctype="multipart/form-data" name="upload_immagine">
-            	Scegli immagine <input name="img" type="file" />
-            	
-
-		</div>
-            <input ID="invia" type="submit" value="Salva">
+			<input ID="invia" type="submit" value="Salva">	
         </form>
     
         <br>

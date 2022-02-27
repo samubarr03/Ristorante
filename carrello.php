@@ -8,21 +8,45 @@
 	else{
 		$logged = '<a href="profilo.php" class="w3-bar-item w3-button"><img src = "img/utente.png" style = "width: 20px; height: 20px;"></a>';	
 	}
+
 	require_once ('data.php');
     $email=$_SESSION['email'];
 
-	if(isset($_GET['id'])) {
-		$var=$_GET['id'];  
-		$quantita=$_GET['qta'];
+	if(isset($_GET['action'])){
+		if($_GET['action']=="aggiungi"){
+			$var=$_GET['id']; 
+			$qta=$_GET['qta'];	
+
+			$sql = "INSERT INTO ClienteAggiungePortata
+			VALUES ('{$var}','{$email}','{$email}')";
+		}
+
+		if($_GET['action']=="rimuovi"){
+			$var=$_GET['id']; 
+			
+			$sql = "DELETE FROM portata WHERE id=$var";	
+		}
+
+
 		
-		$sql = "INSERT INTO ClienteAggiungePortata
-		VALUES ('{$var}','{$email}','{$email}')";
+		if($_GET['action']=="rimuovic"){
+			$var=$_GET['id']; 
+			
+			$sql = "DELETE FROM clienteaggiungeportata WHERE num=$var";	
+		}
+
+		if(!isset($qta)){
+			$qta=1;
+		}		
+
+	
 
 		if ($conn->query($sql) === TRUE) {
-		} else {
-			echo "<script type='text/javascript'>alert('Non puoi prendere lo stesso prodotto più di una volta ');</script>";
-		}
-	}
+			} else {
+				echo "<script type='text/javascript'>alert('Non puoi prendere lo stesso prodotto più di una volta ');</script>";
+			}
+	}	
+	
 ?>
 <html lang="en">
 		<head>
@@ -107,14 +131,129 @@
 							$sql = "SELECT * FROM ClienteAggiungePortata,Portata where ClienteAggiungePortata.num=Portata.id ORDER BY id ASC";
 							$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
 							if(mysqli_num_rows($resultset) > 0)
+
 								{
 								while($row = mysqli_fetch_array($resultset))
 								{
-									component($row['nome'], $row['prezzo'], $row['img'], $row['id']);
+								$nome=$row['nome'];	
+								$prezzo=$row['prezzo'];	
+								$img=$row['img'];
+								$id=$row['id'];		
+										$element =
+											"<div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
+													<div>
+														<div class=\"card shadow\" style=\"width: 18rem; height: 30rem; border-radius:0.25rem; \">
+															<div>
+																<img src=img/Immagini/$img alt=\"Image1\" class=\"img-fluid card-img-top\" style=\"width: 18rem; height: 14rem; \">
+															</div>
+															<div class=\"card-body\">
+																<h5 class=\"card-title\">$nome</h5>
+																<h6>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"far fa-star\"></i>
+																</h6>
+																<p class=\"card-text\">
+									
+																</p>
+																<h5>
+																	
+																	<span class=\"price\">€$prezzo</span>
+																</h5>
+																<h1>
+																<style>
+																	input[type=\"number\"] {
+																		-webkit-appearance: textfield;
+																		-moz-appearance: textfield;
+																		appearance: textfield;
+																	}
+																	
+																	input[type=number]::-webkit-inner-spin-button,
+																	input[type=number]::-webkit-outer-spin-button {
+																		-webkit-appearance: none;
+																	}
+																	
+																	.number-input {
+																		border: 0;
+																		display: inline-flex;
+																	}
+																	
+																	.number-input,
+																	.number-input * {
+																		box-sizing: border-box;
+																	}
+																	
+																	.number-input button {
+																		outline:none;
+																		-webkit-appearance: none;
+																		background-color: transparent;
+																		border: none;
+																		align-items: center;
+																		justify-content: center;
+																		width: 3rem;
+																		height: 3rem;
+																		cursor: pointer;
+																		margin: 0;
+																		position: relative;
+																		box-shadow: 0px 0px 1px #474747;
+																		border-radius: 50%;
+																	}
+																	
+																	.number-input button:before,
+																	.number-input button:after {
+																		display: inline-block;
+																		position: absolute;
+																		content: '';
+																		width: 1rem;
+																		height: 2px;
+																		background-color: #212121;
+																		transform: translate(-50%, -50%);
+																	}
+																	.number-input button.plus:after {
+																		transform: translate(-50%, -50%) rotate(90deg);
+																	}
+																	
+																	.number-input input[type=number] {
+																		font-family: sans-serif;
+																		max-width: 5rem;
+																		padding: .5rem;
+																		border: none;
+																		border-width: 0 2px;
+																		font-size: 2rem;
+																		height: 3rem;
+																		font-weight: bold;
+																		text-align: center;
+																		color:#9be3df;
+																	}
+																</style>  
+																
+																	<div class=\"number-input\">
+																		<button onclick=\"dec()\" ></button>
+																		<input type=\"number\" min=\"0\" name=\"quantity\" value=$qta type=\"number\" >
+																		<button onclick=\" inc()\" class=\"plus\"></button>
+																	</div>
+																</h1>
+																<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id&qta=$qta\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
+																 <input type='hidden' name='product_id' value='$id'>
+															<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"remc\">  <a href=\"carrello.php?action=rimuovic&id=$id\">Rimuovi dal carrello</a><i class=\"fas fa-shopping-cart\"></i></button>\";          	         
+															</div>
+														</div>
+													</div>
+												</div>
+										";
+										echo $element;
 								}
-							}    
-						?>
+							}
+									
+									
+									?>
+									
+									
+
 					</div>
+					<button> <a href="ordina.php">Ordina</a></button>
 				</div> 
 			</div> 
 		<!-- Footer -->
