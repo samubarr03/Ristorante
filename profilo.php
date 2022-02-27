@@ -9,8 +9,11 @@ session_start();
     
     $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
     if(mysqli_num_rows($resultset) > 0)
-        $row = mysqli_fetch_array($resultset);
- 
+        {
+            $row = mysqli_fetch_array($resultset);
+            
+        } 
+       
 ?>
 
 
@@ -330,8 +333,9 @@ session_start();
         <center><h1><b>INFORMAZIONI UTENTE</b></h1></center>
         </div>
         <div class="fotoprofilo">  
-
-        <img src=img/Immagini/<?php $row['img'] ?> alt="Girl in a jacket" style="width:100%">
+        <?php
+        echo "<img src=".$row["foto"]." alt=\"foto profilo\" style=\"width:100%\"> "; 
+        ?>
         </div>
         <!--<input name="nome" ID="abc" type="text" placeholder="Inserire nome"<br>
         <input name="cognome" ID="abc" type="text" placeholder="Inserire cognome"<br>
@@ -340,22 +344,29 @@ session_start();
         <input type="radio" name="sesso" value="Maschio"/><label>M</label> 
         <input type="radio" name="sesso" value="Femmina"/><label>F</label> 
         <br><input ID="invia" type="submit" value="Invia"><br>⠀-->
-        <div method="POST" action="./action_page.php">
+        <form method="POST" action="modificaProfilo.php">
             <div class="info">  
-                    <h2>⠀Nome:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder=<?php echo $row['nome']; ?>></div><br>
-                <br><h2>⠀Cognome:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder=<?php echo $row['cognome']; ?>></div><br>
-                <br><h2>⠀Email:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder=<?php echo $row['email']; ?>></div><br>
-                <br><h2>⠀Telefono:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" placeholder=<?php echo $row['telefono']; ?>></div><br>
+                    <h2>⠀Nome:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" value=<?php echo $row['nome']; ?>></div><br>
+                <br><h2>⠀Cognome:</h2><div class="infoscritte"><input name="cognome" ID="abc" type="text" value=<?php echo $row['cognome']; ?>></div><br>
+                
+                <br><h2>⠀Email:</h2><div class="infoscritte"><input name="email" ID="abc" type="text" value=<?php echo $row['email']; ?>></div><br>
+                <br><h2>⠀Telefono:</h2><div class="infoscritte"><input name="telefono" ID="abc" type="text" value=<?php echo $row['telefono']; ?>></div><br>
                 <h4>⠀</h4>
             </div><br>
             </div>
             <div style="clear:both;"></div>
-            <a href="#" class="button">Carica foto</a>
-            <input ID="invia" type="submit" value="Salva">
-        </div>
-    <br>
-    <div style="clear:both;"></div>
+
+            <form action="upload.php" method="post" enctype="multipart/form-data" name="upload_immagine">
+            Scegli immagine <input name="img" type="file" />
+            <input type="submit" name="carica" value="carica" />
+            </form>
     
+            <input ID="invia" type="submit" value="Salva">
+            </form>
+    
+        <br>
+        <div style="clear:both;"></div>
+            </div>
         <!-- Footer -->
     <footer class="page-footer font-small" style="background-color: #ff8733;">
         <div class="container-fluid">

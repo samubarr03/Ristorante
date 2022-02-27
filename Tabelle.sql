@@ -60,7 +60,8 @@ CREATE TABLE ClienteAggiungePortata(
 
 
  INSERT INTO utente VALUES ('smubarr03@gmail.com','sam','barr','ge','g','4','333333433','1d96ef8b084825443ced61612933de84fb4019a806b42fb19a45e3cb641f69ec','');
-/*
+ 
+ /*
 
     Seguono le INSERT INTO per riempire le tuple del database
     

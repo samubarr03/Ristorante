@@ -6,7 +6,7 @@
     require_once ('data.php');
 
 
-    $upload_percorso = 'utenti/';
+    $upload_percorso = 'img/utenti/';
     // salvo il percorso temporaneo dell'immagine caricata
     $file_tmp = $_FILES['img']['tmp_name'];
     // salvo il nome dell'immagine caricata
@@ -14,7 +14,7 @@
     // sposto l'immagine nel percorso che prima abbiamo deciso
     move_uploaded_file($file_tmp, $upload_percorso.$file_nome);
 
-    $sql = $query="UPDATE utente SET  foto=' $upload_percorso.$file_nome' WHERE email='".$_SESSION['email']."'";
+    $sql = $query="UPDATE utente SET  foto=' $upload_percorso$file_nome' WHERE email='".$_SESSION['email']."'";
     
     $results= mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
 

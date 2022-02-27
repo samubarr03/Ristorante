@@ -109,12 +109,12 @@ function component($nome, $prezzo, $img, $id){
                             <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id&qta=$qta\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
                              <input type='hidden' name='product_id' value='$id'>
                         ";     
-                        if($_SESSION['email']=="admin@gmail.com"){
-                            
-                            $element=$element."
-                        <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"rem\">  <a href=\"carrello.php?action=rimuovi&id=$id&qta=$qta\">Rimuovi Dal carrello al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>";
-                                  
-                        }   
+                        if(isset($_SESSION['email'])){
+                            if($_SESSION['email']=="admin@gmail.com"){
+                                $element=$element."
+                                <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"rem\">  <a href=\"carrello.php?action=rimuovi&id=$id&qta=$qta\">Rimuovi Dal carrello al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>";          
+                            } 
+                        }  
                         
                         $element=$element."          
                         </div>
