@@ -5,16 +5,12 @@ session_start();
 	}
     require_once ('data.php');
 
-    $sql = "SELECT * FROM Utente where email=$_SESSION['email']";
+    $sql = "SELECT * FROM Utente where email= '".$_SESSION['email']."'";
     
     $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
     if(mysqli_num_rows($resultset) > 0)
-        {
-            while($row = mysqli_fetch_array($resultset))
-            {
-                component($row['nome'], $row['cognome'], $row['img'], $row['email'], $row['img'], $row['telefono'], $row['citta'], $row['via'], $row['civico']  );
-            }
-        } 
+        $row = mysqli_fetch_array($resultset)
+ 
 ?>
 <html lang="en">
         <head>
