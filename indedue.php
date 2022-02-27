@@ -1,3 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ff8733;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #ff6900;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+  .Sidenav {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+<h2>Animated Sidenav Example</h2>
+<p>Click on the element below to open the side navigation menu.</p>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+   
+</body>
 <?php
 $admin=0;
 
@@ -18,55 +94,12 @@ if(!isset($_SESSION['email'])){
 
 ?>
 
-<html>  
-    <style>
-        @media screen and (max-height: 450px) {
-            body {background-color: coral;}
-					.sidenav {padding-top: 15px;}
-					.sidenav a {font-size: 18px;}
-					.dropbtn{
-						width: 0px;
-						height: 0px;
-					}
-                    .button {
-				background-color: #ff8733;
-				border: none;
-				color: white;
-				padding: 15px 32px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				float:center;
-				cursor: pointer;
-				width: 0%;  
-				height: 00%;
-				font-family: "Open Sans", sans-serif;
-			}
-            .dropdown{
-                width: 0%;  
-				height: 0%; 
-            }
-            .veloznonhafattouncazzo{
-                position:fixed;
-                z-index: 1;
-            }
-        }
-    </style>	
+<html>  	
     <div class="bg">
         <!--NAVBAR -->
-		<div style="veloznonhafattouncazzo">
-        <nav class="navbar navbar-light" style="position:fixed;background-color:#ff6900;z-index: 1;">
-        <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
-        </div>
-        <span id="sparisci" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;⠀</span>
-
+		<nav class="navbar navbar-light" style="background-color: #ff6900;">
 		    <br><a class="navbar-brand" href="#">
-		    <a href="index.php"><img src="img/logo_large_b.png" width="278" height="90" class="d-inline-block align-top" alt=""></a></a>
+		    <a href="index.php"><img src="img/logo_large_b.png" width="333" height="108" class="d-inline-block align-top" alt=""></a></a>
 		    <div class="dropdown">
                 <button class="dropbtn"><a href="menu.php">Menù</a></button>
                 <div class="dropdown-content">
@@ -100,6 +133,6 @@ if(!isset($_SESSION['email'])){
             
             <div class="bg">
             </div><br>
-	    </nav></div>
+	    </nav>
     </div> 
-</html>        
+</html>    

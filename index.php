@@ -74,26 +74,184 @@ session_start();
 					.dropdown:hover .dropbtn {
 					background-color: #ff6900;
 					}
+					body {
+					font-family: "Lato", sans-serif;
+					transition: background-color .5s;
+					}
+
+					.sidenav {
+					height: 100%;
+					width: 0;
+					position: fixed;
+					z-index: 1;
+					top: 0;
+					left: 0;
+					background-color: #ff6900;
+					overflow-x: hidden;
+					transition: 0.5s;
+					padding-top: 60px;
+					}
+
+					.sidenav a {
+					padding: 8px 8px 8px 32px;
+					text-decoration: none;
+					font-size: 25px;
+					color: white;
+					display: block;
+					transition: 0.3s;
+					}
+
+					.sidenav a:hover {
+					color: #ff8733;
+					}
+
+					.sidenav .closebtn {
+					position: absolute;
+					top: 0;
+					right: 25px;
+					font-size: 36px;
+					margin-left: 50px;
+					}
+					#main {
+					transition: margin-left .5s;
+					padding: 16px;
+					}
+					@media screen and (max-height: 450px) {
+					.sidenav {padding-top: 15px;}
+					.sidenav a {font-size: 18px;}
+					.dropbtn{
+						width: 0px;
+						height: 0px;
+					}}
+					@media screen and (max-width: 450px) {
+                        .bg{
+                            background: repeating-linear-gradient(
+                            45deg,
+                            #ff6900,
+                            #ff6900 45px,
+                            #ff8733 45px,
+                            #ff8733 90px
+                            );
+                        }
+						.dropdown {
+							position: relative;
+							display: none;
+						}
+						.dropbtn {
+							display:none;
+						}
+						.bottonialcentro{
+							background-color:#ff6900;
+							margin-left:3%;
+							margin-right:3%;
+							width:92%;
+							padding-left:1%;
+							padding-right:1%;
+							height:64px;
+						}
+						.button {
+							background-color: #ff8733;
+							border: none;
+							color: white;
+							text-align: center;
+							text-decoration: none;
+							display: inline-block;
+							float:center;
+							font-size: 20px;
+							cursor: pointer;
+							width: 28%;  
+							height: 75%;
+							font-family: "Open Sans", sans-serif;
+							padding: 10px 0;
+						}
+						.piatti a{
+							width: 180px;
+							height: 180px;	
+							font-size: 200%;
+							display: inline-block;
+							float:center;
+						}
+						.dropbtn {
+							background-color:#ff6900 ;
+							color: white;
+
+							border: none;
+							cursor: pointer;
+						}
+						.pparte{
+							background-color:#ff8733;
+							text-align: center;
+							padding-left:2%;
+							padding-right:2%;
+						}
+						.pparte p {
+							font-variant-numeric: oldstyle-nums;
+							padding-left:2%;
+							padding-right:2%;
+							width:96%;
+						}
+						.pparte h1 {
+							font-variant-numeric: oldstyle-nums;
+							color: #000000;
+							padding-left:1%;
+							width:98%;
+							padding-right:1%;
+						}
+
+					}
+					.veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati{
+						height:106px;
+						width:100%;
+						background-color:#ff6900;
+					}
+					.veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati .a{
+						width: 50%;
+						height: 2%;
+						color: green;
+						font-size:1px;
+					}
+					.veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati .button{
+						width: 40%;
+						height: 2%;
+						color: green;
+						font-size:18px;
+					}
         	</style>
 		<body>
+		<script>
+			function openNav() {
+			document.getElementById("mySidenav").style.width = "300px";
+			document.getElementById("main").style.marginLeft = "300px";
+			document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+			}
+
+			function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+			document.getElementById("main").style.marginLeft= "0";
+			document.body.style.backgroundColor = "white";
+			}
+		</script>
 			<div class="bg">
         <!--NAVBAR -->
+				
 				<?php require_once ("nav.php"); ?>
-	
+				<div class="veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati">
+					<a href="#" class="button">ehy che ci fai qua</a>
+				</div>
 				<img src="img/immagina.png" class="flex">
 				<div class="bottonialcentro">
 					<a href="menu.php" class="button">Menù </a>
 					<a href="#" class="button">Prenota</a>
-					<a href="#" class="button">Chi siamo</a>
+					<a href="#" class="button">Info</a>
 				</div>
 				<br><br>
-				<div class="piatti">
-					<a href="#" class="button">Primo <img src="img/primo.svg" width="80%" height="80%" padding-bottom="100px"></a>
-					<a href="#" class="button">Primo <img src="img/primo.svg" width="80%" height="80%"></a>
-					<a href="#" class="button">Primo <img src="img/primo.svg" width="80%" height="80%"></a><br><br>
-				</div>
+				<center><div class="piatti">
+					<a href="#" class="button"><img src="img/primodue.png" width="90%" height="90%"></a>
+					<a href="#" class="button"><img src="img/primodue.png" width="90%" height="90%"></a>
+					<a href="#" class="button"><img src="img/primodue.png" width="90%" height="90%"></a><br><br>
+				</div></center>
 			</div>
-		
+			<div style="clear: both"></div>	
 	<div class="pparte">
 		<br>
 		<img src="img/primo.svg">
@@ -160,7 +318,7 @@ session_start();
 <div class="footer-copyright text-center py-3">© 2020 Copyright:
   <a href="#">SCV.com</a>
 </div>
-</footer>
+</footer> 
 	</body>
 	<script src="js/bootstrap.bundle.min.js"></script>
 	</html>
