@@ -12,17 +12,51 @@ session_start();
 	}
 	require_once ('data.php');
 
-    IF($_POST){
-        if($_POST["nome"]){
-            $nome=$_POST["nome"];
-        }
+	
 
-        if($_POST["cognome"]){
-            $cognome=$_POST["cognome"];
-        }
-        if($_POST["telefono"]){
-            $telefono=$_POST["telefono"];
-        }
+	if($_POST)
+	$sql = "SELECT * FROM cartacredito where nCarta= '".$_POST["nCarta"]."'";
+	$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+	if(mysqli_num_rows($resultset) > 0)
+		{
+			$res = mysqli_fetch_array($resultset);
+			
+		}
+	else{
+		if($_POST){
+			if($_POST["nomeCarta"]){
+				$nomeCarta=$_POST["nomeCarta"];
+			}
+			if($_POST["nCarta"]){
+				$nCarta=$_POST["nCarta"];
+			}
+	
+			if($_POST["cognomeCarta"]){
+				$cognomeCarta=$_POST["cognomeCarta"];
+			}
+	
+			if($_POST["scadenza"]){
+				$scadenza=$_POST["scadenza"];
+			}
+			if($_POST["cvv"]){
+				$cvv=$_POST["cvv"];
+			}	
+			$sql = "INSERT INTO cartacredito VALUES ('{$nomeCarta}','{$cognomeCarta}','{$nCarta}','{$scadenza}','{$cvv}','{$_SESSION['email']}')";
+			$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+		}
+		else{
+			$res['nome']='';
+			$res['cognome']='';
+			$res['nCarta']='';
+			$res['scadenza']='';
+			$res['CVV']='';
+		}   
+
+	}
+
+    if($_POST){
+
+
         if($_POST["citta"]){
             $citta=$_POST["citta"];
         }
@@ -32,35 +66,48 @@ session_start();
         if($_POST["civico"]){
             $civico=$_POST["civico"];
         }
-        $sql = $query="UPDATE utente SET nome='$nome', cognome='$cognome', telefono='$telefono' WHERE email='".$_SESSION['email']."'";
-        $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
-    }
-
-    IF($_POST){
-        if($_POST["nomeCarta"]){
-            $nomeCarta=$_POST["nomeCarta"];
+		if($_POST["data"]){
+            $data = strtotime($_POST["data"]);
         }
+		$sql = "SELECT MAX(id) as id FROM spedizione";    
+		$result= mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+		$data = mysqli_fetch_assoc($result);
+		$id = $data['id']+1;
 
-        if($_POST["cognomeCarta"]){
-            $cognomeCarta=$_POST["cognomeCarta"];
-        }
-        if($_POST["nCarta"]){
-            $nCarta=$_POST["nCarta"];
-        }
-        if($_POST["scadenza"]){
-            $scadenza=$_POST["scadenza"];
-        }
-        if($_POST["cvv"]){
-            $cvv=$_POST["cvv"];
-        }
+		$sql = "SELECT SUM(prezzo) FROM ClienteAggiungePortata,Portata where ClienteAggiungePortata.num=Portata.id ";
+		$totale = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));		
+   
 
-        
-        $sql = $query="UPDATE utente SET nome='$nomeCarta', cognome='$cognomeCarta', nCarta='$nCarta' , scadenza='$scadenza', cvv='$cvv' WHERE email='".$_SESSION['email']."'";
-        $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
-    }
+		
 
+		$sql = "SELECT * FROM ClienteAggiungePortata ";
+		$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+		if(mysqli_num_rows($resultset) > 0)
 
-    $sql = "SELECT * FROM Utente where email= '".$_SESSION['email']."'";
+			{
+			while($row = mysqli_fetch_array($resultset))
+			{
+			$num=$row['num'];	
+			$quantita=$row['quantita'];	
+
+			$sql = "DELETE  FROM ClienteAggiungePortata WHERE `num`='{$id}' && `email`='{$_SESSION['email']}' ";
+			$del = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+
+			$sql = "INSERT INTO PortataVieneSpedita VALUES ('{$num}','{$quantita}','{$id}')";
+			$add = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));		
+		
+			}	
+    	}
+		$sql = "INSERT INTO spedizione VALUES ('{$id}','{$_SESSION['email']}','{$nCarta}','{$citta}','{$via}','{$civico}','{$totale}','CURRENT_TIMESTAMP','{$data}')";
+		$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+	header("location: index.php");
+	}
+
+	$sql = "SELECT SUM(prezzo) FROM ClienteAggiungePortata,Portata where ClienteAggiungePortata.num=Portata.id ";
+	$totale = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));		
+   
+
+	$sql = "SELECT * FROM Utente where email= '".$_SESSION['email']."'";
     
     $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
     if(mysqli_num_rows($resultset) > 0)
@@ -70,24 +117,10 @@ session_start();
         } 
 
 
-    require_once ('data.php');
-
-    $sql = "SELECT * FROM cartacredito where email= '".$_SESSION['email']."'";
-    
-    $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
-    if(mysqli_num_rows($resultset) > 0)
-        {
-            $res = mysqli_fetch_array($resultset);
-            
-        }
-    else{
-        $res['nome']='';
-        $res['cognome']='';
-        $res['nCarta']='';
-        $res['scadenza']='';
-        $res['CVV']='';
-    }        
-
+     
+		if(!isset($qta)){
+			$qta=1;
+		}
 ?>
 <html lang="en">
 		<head>
@@ -315,20 +348,148 @@ session_start();
 
             <form method="POST" >
 
-                    <h2>⠀Nome:</h2><div class="infoscritte"><input name="nome" ID="abc" type="text" value=<?php echo $row['nome']; ?>></div><br>
-                <br><h2>⠀Cognome:</h2><div class="infoscritte"><input name="cognome" ID="abc" type="text" value=<?php echo $row['cognome']; ?>></div><br>
-                <br><h2>⠀Telefono:</h2><div class="infoscritte"><input name="telefono" ID="abc" type="text" value=<?php echo $row['telefono']; ?>></div><br>
+                
                 <h2>Città:</h2><div class="infoscritte"><input name="citta" ID="abc" type="text" value=<?php echo $row['Citta']; ?>></div><br>
                 <br><h2>Via:</h2><div class="infoscritte"><input name="via" ID="abc" type="text" value=<?php echo $row['via']; ?>></div><br>
                 <br><h2>Civico:</h2><div class="infoscritte"><input name="civico" ID="abc" type="text" value=<?php echo $row['civico']; ?>></div><br>
+				<h2>Consegna:Se la si vuole immediata mttere l'ora più vicina al momento attuale<input type="datetime-local" id="meeting-time" name="data" value="2022-02-12T19:30"min="2022-02-28T00:00" max="2025-06-14T00:00">
                 <h2>Nome Carta:</h2><div class="infoscritte"><input name="nomeCarta" ID="abc" type="text" value=<?php echo $res['nome']; ?>></div><br>
                 <br><h2>⠀Cognome Carta:</h2><div class="infoscritte"><input name="cognomeCarta" ID="abc" type="text" value=<?php echo $res['cognome']; ?>></div><br>
-                <br><h2>Numero Carta:</h2><div class="infoscritte"><input name="nCarta" ID="abc" type="text" value=<?php echo $res['nCarta']; ?>></div><br>
-                <h2>Scadenza:</h2><div class="infoscritte"><input name="scadenza" ID="abc" type="text" value=<?php echo $res['scadenza']; ?>></div><br>
-                <br><h2>CVV:</h2><div class="infoscritte"><input name="cvv" ID="abc" type="text" value=<?php echo $res['CVV']; ?>></div><br>     
+                <br><h2>Numero Carta:</h2><div class="infoscritte"><input name="nCarta" ID="abc" type="text" min="16" max="16" value=<?php echo $res['nCarta']; ?>></div><br>
+                <h2>Scadenza:</h2><input type="datetime-local" id="meeting-time" name="scadenza" value="2022-02-12T19:30"min="2022-02-28T00:00" max="2025-06-14T00:00">
+                <br><h2>CVV:</h2><div class="infoscritte"><input name="cvv" ID="abc" type="text" min="3" max="3"value=<?php echo $res['CVV']; ?>></div><br>     
                 <button type="submit"> Salva</a></button>
             </form><br>
             </div>
+
+
+			<div class="container">
+					<div class="row text-center py-5">
+						<?php
+							$sql = "SELECT * FROM ClienteAggiungePortata,Portata where ClienteAggiungePortata.num=Portata.id ORDER BY id ASC";
+							$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+							if(mysqli_num_rows($resultset) > 0)
+							{
+								while($row = mysqli_fetch_array($resultset))
+								{
+								$nome=$row['nome'];	
+								$prezzo=$row['prezzo'];	
+								$img=$row['img'];
+								$id=$row['id'];		
+										$element =
+											"<div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
+													<div>
+														<div class=\"card shadow\" style=\"width: 18rem; height: 30rem; border-radius:0.25rem; \">
+															<div>
+																<img src=img/Immagini/$img alt=\"Image1\" class=\"img-fluid card-img-top\" style=\"width: 18rem; height: 14rem; \">
+															</div>
+															<div class=\"card-body\">
+																<h5 class=\"card-title\">$nome</h5>
+																<h6>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"far fa-star\"></i>
+																</h6>
+																<p class=\"card-text\">
+									
+																</p>
+																<h5>
+																	
+																	<span class=\"price\">€$prezzo</span>
+																</h5>
+																<h1>
+																<style>
+																	input[type=\"number\"] {
+																		-webkit-appearance: textfield;
+																		-moz-appearance: textfield;
+																		appearance: textfield;
+																	}
+																	
+																	input[type=number]::-webkit-inner-spin-button,
+																	input[type=number]::-webkit-outer-spin-button {
+																		-webkit-appearance: none;
+																	}
+																	
+																	.number-input {
+																		border: 0;
+																		display: inline-flex;
+																	}
+																	
+																	.number-input,
+																	.number-input * {
+																		box-sizing: border-box;
+																	}
+																	
+																	.number-input button {
+																		outline:none;
+																		-webkit-appearance: none;
+																		background-color: transparent;
+																		border: none;
+																		align-items: center;
+																		justify-content: center;
+																		width: 3rem;
+																		height: 3rem;
+																		cursor: pointer;
+																		margin: 0;
+																		position: relative;
+																		box-shadow: 0px 0px 1px #474747;
+																		border-radius: 50%;
+																	}
+																	
+																	.number-input button:before,
+																	.number-input button:after {
+																		display: inline-block;
+																		position: absolute;
+																		content: '';
+																		width: 1rem;
+																		height: 2px;
+																		background-color: #212121;
+																		transform: translate(-50%, -50%);
+																	}
+																	.number-input button.plus:after {
+																		transform: translate(-50%, -50%) rotate(90deg);
+																	}
+																	
+																	.number-input input[type=number] {
+																		font-family: sans-serif;
+																		max-width: 5rem;
+																		padding: .5rem;
+																		border: none;
+																		border-width: 0 2px;
+																		font-size: 2rem;
+																		height: 3rem;
+																		font-weight: bold;
+																		text-align: center;
+																		color:#9be3df;
+																	}
+																</style>  
+																
+																	<div class=\"number-input\">
+																		
+																		<input type=\"number\" min=\"0\" name=\"quantity\" value=$qta type=\"number\" >
+																		
+																	</div>
+																</h1>
+																<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
+																 <input type='hidden' name='product_id' value='$id'>
+															<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"remc\">  <a href=\"carrello.php?action=rimuovic&id=$id\">Rimuovi dal carrello</a><i class=\"fas fa-shopping-cart\"></i></button>\";          	         
+															</div>
+														</div>
+													</div>
+												</div>
+										";
+										echo $element;
+								}								
+							}
+									
+									
+									?>
+									
+									
+
+					</div>			
             <div style="clear:both;"></div>        
 		<!-- Footer -->
 	<footer class="page-footer font-small" style="background-color: #ff8733;">

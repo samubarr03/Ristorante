@@ -15,10 +15,11 @@
 	if(isset($_GET['action'])){
 		if($_GET['action']=="aggiungi"){
 			$var=$_GET['id']; 
-			$qta=$_GET['qta'];	
+				
 
 			$sql = "INSERT INTO ClienteAggiungePortata
-			VALUES ('{$var}','{$email}','{$email}')";
+			VALUES ('{$var}','1','{$email}')";
+			
 		}
 
 		if($_GET['action']=="rimuovi"){
@@ -33,19 +34,35 @@
 			$var=$_GET['id']; 
 			
 			$sql = "DELETE FROM clienteaggiungeportata WHERE num=$var";	
-		}
-
-		if(!isset($qta)){
-			$qta=1;
-		}		
+		}	
 
 	
 
 		if ($conn->query($sql) === TRUE) {
-			} else {
-				echo "<script type='text/javascript'>alert('Non puoi prendere lo stesso prodotto più di una volta ');</script>";
+			
+			} 
+			else {
+				
+				$sql = "SELECT * FROM ClienteAggiungePortata where `num`='{$var}' ORDER BY num ASC";
+				$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+				if(mysqli_num_rows($resultset) > 0)
+
+					{
+					while($row = mysqli_fetch_array($resultset))
+					{
+					$qta=$row['quantita'];	
+
+					}
+				}
+				$qta=$qta+1;
+
+				$sql = "UPDATE ClienteAggiungePortata SET quantita='$qta' WHERE `id`='{$var}'";
+				$results = mysqli_query($conn, $sql);
 			}
-	}	
+	}
+	
+	
+	
 	
 ?>
 <html lang="en">
@@ -138,7 +155,8 @@
 								$nome=$row['nome'];	
 								$prezzo=$row['prezzo'];	
 								$img=$row['img'];
-								$id=$row['id'];		
+								$id=$row['id'];	
+								$qta=$row['quantita'];	
 										$element =
 											"<div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
 													<div>
@@ -230,12 +248,12 @@
 																</style>  
 																
 																	<div class=\"number-input\">
-																		<button onclick=\"dec()\" ></button>
+																		
 																		<input type=\"number\" min=\"0\" name=\"quantity\" value=$qta type=\"number\" >
-																		<button onclick=\" inc()\" class=\"plus\"></button>
+																		
 																	</div>
 																</h1>
-																<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id&qta=$qta\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
+																<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
 																 <input type='hidden' name='product_id' value='$id'>
 															<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"remc\">  <a href=\"carrello.php?action=rimuovic&id=$id\">Rimuovi dal carrello</a><i class=\"fas fa-shopping-cart\"></i></button>\";          	         
 															</div>

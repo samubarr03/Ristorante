@@ -1,13 +1,5 @@
 <?php
 
-function inc(){
-    $qta=$qta+1;
-}
-
-function dec(){
-    $qta=$qta-1;
-}
-
 function component($nome, $prezzo, $img, $id){
     $qta=1;
     $element =
@@ -101,12 +93,12 @@ function component($nome, $prezzo, $img, $id){
                             </style>  
                             
                                 <div class=\"number-input\">
-                                    <button onclick=\"dec()\" ></button>
+                                   
                                     <input type=\"number\" min=\"0\" name=\"quantity\" value=$qta type=\"number\" >
-                                    <button onclick=\" inc()\" class=\"plus\"></button>
+                                   
                                 </div>
                             </h1>
-                            <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id&qta=$qta\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
+                            <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
                              <input type='hidden' name='product_id' value='$id'>
                         ";     
                         if(isset($_SESSION['email'])){
