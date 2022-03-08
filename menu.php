@@ -65,227 +65,429 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <title>Prenota-One</title>
     </head>
-    <style>
-            .centrare{
-                padding-left:8%;
-                padding-right:8%;
-                display: inline-block;
-            }
-            .bg{
+    <script>
+			function openNav() {
+			document.getElementById("mySidenav").style.width = "300px";
+			document.getElementById("main").style.marginLeft = "300px";
+			document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+			}
+
+			function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+			document.getElementById("main").style.marginLeft= "0";
+			document.body.style.backgroundColor = "white";
+			}
+		</script>
+        <style>
+            @import url(style.css);
+            body {
                 z-index: -1;
-                background: repeating-linear-gradient(
-                45deg,
-                #ff6900,
-                #ff6900 40px,
-                #ff8733 40px,
-                #ff8733 80px
-                );
-            }
-            .button {
-                background-color: #ff8733;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                float:center;
-                font-size: 280%;
-                margin: 4px 2px;
-                margin-left:2%;
-                margin-right:2%;
-                cursor: pointer;
-                width: 28%;  
-                height: 10%;
-                font-family: "Open Sans", sans-serif;
-            }
-            .buttonfooter {
-                background-color: #ff6900;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                float:center;
-                font-size: 180%;
-                margin: 4px 2px;
-                margin-left:2%;
-                margin-right:2%;
-                cursor: pointer;
-                width: 75%;  
-                height: 70%;
-            }.buttonfooterb{
-                background-color: #ff6900;
-                border: none;
-                color: white;
-                padding: 15px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                float:center;
-                font-size: 180%;
-                margin: 4px 2px;
-                margin-left:2%;
-                margin-right:2%;
-                cursor: pointer;
-                width: 97%;  
-                height: 70%;
-            }
-            .bottonialcentro{
-                background-color:#ff6900;
-                margin-left:22.5%;
-                margin-right:22.5%;
-                padding-left:1%;
-                padding-right:1%;
-                padding-bottom:0.75%;
-                padding-top:0.75%;
-                text-align: center;
-                position: relative;
-                z-index: 0;
-                top:-10%;
-            }
-            .flex {max-width: 89%;
-                position: relative;
-                z-index: 0;
-                margin-left:5.5%;
-                margin-right:5.5%;
-                border-radius: 0.1%;
-            }
-            .bottonialfooter{
-                text-align: center;
-                padding-left:1%;
-                padding-right:1%;
-                padding-bottom:0.75%;
-                padding-top:0.75%;
-                text-align: center;
-                position: relative;
-                z-index: 0;
-                top:-10%;
-            }
-            .parent {
-                text-align: center;
-                margin: 20px 0;
-                padding: 20px;
-                }
-
-            .parent div {
-                margin:10px;
-                padding: 10px;
-                display: inline-block;
-                text-align: left;
-            }
-            .pparte{
-                background-color:#ff8733;
-                text-align: center;
-                padding-left:20%;
-                padding-right:20%;
-            }
-            .pparte p {
-                font-variant-numeric: oldstyle-nums;
-                padding-left:10%;
-                padding-right:10%;
-            }
-            .pparte h1 {
-                font-variant-numeric: oldstyle-nums;
-                color: #000000;
-                padding-left:20%;
-                padding-right:20%;
-            }
-            .sparte{
-                background-color:#ff6900;
-                text-align: center;
-            }
-            .sparte p {
-                font-variant-numeric: oldstyle-nums;
-                padding-left:10%;
-                padding-right:10%;
-            }
-            .sparte h1 {
-                font-variant-numeric: oldstyle-nums;
-                padding-left:20%;
-                padding-right:20%;
-            }
-            .card {
-                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-                transition: 0.3s;
-                width: 66%;
-            }
-            .card:hover {
-                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-            }
-            .allinea{
-                display: inline;
-            }
-            .piatti a{
-                display: inline-block;
-                width: 512px;
-                height: 512px;
-                color: #ff6900;
-                vertical-align: middle;
-                text-decoration: none;
-                font-size: 400%;
-                border: .5em solid rgba(0,0,0,0);
-                border-radius: 100%;
-                background: rgb(245,245,245);
-                box-shadow:
-                inset 0 -6px 20px rgba(255,255,255,1),
-                inset 0 6px 20px rgba(0,0,0,.4),
-                0 4px 8px rgba(0,0,0,.9);
-                text-align: center;
-                position: relative;
-                .dropbtn {
-                background-color:#ff6900 ;
-                color: white;
-
-                border: none;
-                cursor: pointer;
-            }
+	background: repeating-linear-gradient(
+	45deg,
+	#ff6900,
+	#ff6900 40px,
+	#ff8733 40px,
+	#ff8733 80px
+	);
+					}
             .dropbtn {
-            background-color: #04AA6D;
-            color: white;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            }
+                    background-color: #ff8733;
+                    color: white;
+                    padding: 16px;
+                    font-size: 24px;
+                    border: none;
+                    cursor: pointer;
+                    width: 160px;
+                    height: 80px;
+                    }
 
-            .dropdown {
-            position: relative;
-            display: inline-block;
-            }
+                    .dropdown {
+                    position: relative;
+                    display: inline-block;
+                    }
 
-            .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f1f1f1;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            }
+                    .dropdown-content {
+                    display: none;
+                    position: absolute;
+                    background-color: #ff8733;
+                    min-width: 160px;
+                    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                    z-index: 1;
+                    }
 
-            .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            }
+                    .dropdown-content a {
+                    color: white;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                    }
 
-            .dropdown-content a:hover {background-color: #ddd;}
+                    .dropdown-content a:hover {background-color: #ff6900}
 
-            .dropdown:hover .dropdown-content {display: block;}
+                    .dropdown:hover .dropdown-content {
+                    display: block;
+                    }
 
-            .dropdown:hover .dropbtn {background-color: #3e8e41;}
-    </style>
+                    .dropdown:hover .dropbtn {
+                        background-color: #ff6900;
+                    }
+                    .profilo{
+                        margin-left:18%;
+                        margin-right:18%;
+                        margin-top:2%;
+                        width:64%;
+                        height:70%;
+                        background-color: #ff8733;
+                    }           
+                    .fotoprofilo{
+                        background-color: #ff6900;
+                        margin-left:6%;
+                        width:35%;
+                        height:63%;
+                        border: 10px solid #ff6900;
+                        float:left;
+                    }
+                    .titolo{
+                        background-color: #ff6900;
+                        width:40%;
+                        margin-left:30%;
+                        margin-right:30%;
+                    }
+                    .titolo .h1{
+                        font-size: 4.9em;
+                    }
+                    .info{
+                        background-color: #ff6900;
+                        margin-left:5%;
+                        margin-right:5%;
+                        width:49%;
+                        float:left;
+                    }
+                    .infoscritte{
+                        background-color: #ff7816;
+                        float:left;
+                        margin-left:5%;
+                        margin-right:5%;
+                    }
+                    .button{
+                    background-color: #ff6900;
+                    border: none;
+                    color: white;
+                    padding: 10px 0px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 28px;
+                    margin: 4px 2px;
+                    margin-left:13.5%;
+                    margin-right:2%;
+                    margin-top:2%;
+                    cursor: pointer;
+                        width: 20%;  
+                        height: 10%;
+                        font-family: "Open Sans", sans-serif;
+
+                     }
+                    #abc{
+                        font-family: "Lucida Console", "Courier New", monospace;
+                        font-size:150%;
+                        width:90%;
+                        background-color: #ff7816;
+                        border:0px;
+                        margin-left:5%;
+                        margin-right:5%;
+                        color: white;
+                    }
+                     #invia{
+                        background-color: #ff6900;
+                        border: none;
+                        color: white;
+                        padding: 10px 0px;
+                        text-align: center;
+                        text-decoration: none;
+                        float: center;
+                        font-size: 28px;
+                        margin: 4px 2px;
+                        margin-left:13.5%;
+                        margin-right:2%;
+                        margin-top:2%;
+                        cursor: pointer;
+                        width: 20%;  
+                        height: 10%;
+                        font-family: "Open Sans", sans-serif;
+                    }
+                    @media screen and (max-width: 430px) {
+                        .bg{
+                            background: repeating-linear-gradient(
+                            45deg,
+                            #ff6900,
+                            #ff6900 40px,
+                            #ff8733 40px,
+                            #ff8733 80px
+                            );
+                        }
+                     .profilo{
+                        margin-left:5%;
+                        margin-right:5%;
+                        margin-top:2%;
+                        width:90%;
+                        height:120%;
+                        background-color: #ff8733;
+                    }           
+                    .fotoprofilo{
+                        
+                        margin-left:12.5%;
+                        margin-top:2%;
+                        width:75%;
+                        height:30%;
+                        border: 10px solid #ff6900;
+                    }
+                    .titolo{
+                        background-color: #ff6900;
+                        width:85%;
+                        margin-left:7.5%;
+                        margin-right:7.5%;
+                    }
+                    .titolo .h1{
+                        font-size: 4.9em;
+                    }
+                    .info{
+                        background-color: #ff6900;
+                        margin-left:12.5%;
+                        margin-right:12.5%;
+                        width:75%;
+                    }
+                    .infoscritte{
+                        background-color: #ff7816;
+                        float:left;
+                        margin-left:10%;
+                        margin-right:5%;
+                    }
+                        #invia{
+                        background-color: #ff6900;
+                        border: none;
+                        color: white;
+                        padding: 10px 0px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 22px;
+                        margin: 4px 2px;
+                        margin-left:13%;
+                        cursor: pointer;
+                        width: 30%;  
+                        height: 5%;
+                        font-family: "Open Sans", sans-serif;
+                    }
+                    .button{
+                        background-color: #ff6900;
+                        border: none;
+                        color: white;
+                        padding: 10px 0px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 18px;
+                        margin: 4px 2px;
+                        margin-left:13%;
+                        cursor: pointer;
+                        width: 30%;  
+                        height: 5%;
+                        font-family: "Open Sans", sans-serif;}      
+                     }
+                    @media screen and (max-width: 352px) {
+                    .dropbtn {
+                        background-color: #ff8733;
+                        color: white;
+                        padding: 16px;
+                        font-size: 24px;
+                        border: none;
+                        cursor: pointer;
+                        width: 140px;
+                        height: 70px;
+                    }
+                    .titolo{
+                        background-color: #ff6900;
+                        width:90%;
+                        margin-left:5%;
+                        margin-right:5%;
+                    }
+                    .titolo .h1{
+                        font-size: 4.5em;
+                    }
+                    .profilo{
+                        margin-left:3%;
+                        margin-right:3%;
+                        margin-top:2%;
+                        width:94%;
+                        height:100%;
+                        background-color: #ff8733;
+                    }
+                    .fotoprofilo{
+                        margin-left:12.5%;
+                        margin-top:2%;
+                        width:75%;
+                        height:25%;
+                        border: 10px solid #ff6900;
+                    }   
+                    .infoscritte{
+                        background-color: #ff7816;
+                        float:left;
+                        margin-left:8%;
+                        margin-right:5%;
+                        
+                    }
+                    #invia{
+                        background-color: #ff6900;
+                        border: none;
+                        color: white;
+                        padding: 10px 0px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 22px;
+                        margin: 4px 2px;
+                        margin-left:13%;
+                        cursor: pointer;
+                        width: 30%;  
+                        height: 5%;
+                        margin-top: 5%;
+                        font-family: "Open Sans", sans-serif;
+                    }
+                    .button{
+                        background-color: #ff6900;
+                        border: none;
+                        color: white;
+                        padding: 10px 0px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 18px;
+                        margin: 4px 2px;
+                        margin-left:13%;
+                        margin-top: 5%;
+                        cursor: pointer;
+                        width: 30%;  
+                        height: 5%;
+                        font-family: "Open Sans", sans-serif;
+                    }
+        
+                }
+            body {
+					font-family: "Lato", sans-serif;
+					transition: background-color .5s;
+					}
+
+					.sidenav {
+					height: 100%;
+					width: 0;
+					position: fixed;
+					z-index: 1;
+					top: 0;
+					left: 0;
+					background-color: #ff6900;
+					overflow-x: hidden;
+					transition: 0.5s;
+					padding-top: 60px;
+					}
+
+					.sidenav a {
+					padding: 8px 8px 8px 32px;
+					text-decoration: none;
+					font-size: 25px;
+					color: white;
+					display: block;
+					transition: 0.3s;
+					}
+
+					.sidenav a:hover {
+					color: #ff8733;
+					}
+
+					.sidenav .closebtn {
+					position: absolute;
+					top: 0;
+					right: 25px;
+					font-size: 36px;
+					margin-left: 50px;
+					}
+					#main {
+					transition: margin-left .5s;
+					padding: 16px;
+					}
+					@media screen and (max-height: 450px) {
+					.sidenav {padding-top: 15px;}
+					.sidenav a {font-size: 18px;}
+					.dropbtn{
+						width: 0px;
+						height: 0px;
+					}}
+                    .dropbtn {
+				background-color:#ff6900 ;
+				color: white;
+
+				border: none;
+				cursor: pointer;
+			}
+			.dropbtn {
+				background-color: #ff8733;
+				color: white;
+				padding: 16px;
+				font-size: 16px;
+				border: none;
+				cursor: pointer;
+                margin-left:5%;
+			}
+
+			.dropdown {
+			position: relative;
+			display: inline-block;
+			}
+
+			.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #ff8733;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+			}
+
+			.dropdown-content a {
+			color: white;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+			}
+
+			.dropdown-content a:hover {background-color: #ff6900}
+
+			.dropdown:hover .dropdown-content {
+			display: block;
+			}
+
+			.dropdown:hover .dropbtn {
+			background-color: #ff6900;
+			}
+            a {
+                color: black;
+                text-decoration: none;
+                background-color: transparent;
+}
+            
+            </style>
     <body>
         <div class="bg">
         <!--NAVBAR -->
-        <?php require_once ("nav.php"); ?> 
+        <?php require_once ("nav.php"); ?>
+				<div class="veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati">
+					<a href="#" class="button">ehy che ci fai qua</a>
+				</div>
+        
     <!-- inizia parte menu -->
 
-    <div class="container">
-        <div class="row text-center py-5">
+        <div style="carte">
             <?php
-                
                 $resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
                 if(mysqli_num_rows($resultset) > 0)
                     {
@@ -296,32 +498,25 @@
                     }    
                     ?>
         </div>
-    </div>                
-            
+    <br><br><br></div>                
+    <div style="clear: both"></div>     
 
         <!-- Footer -->
-<footer class="page-footer font-small" style="background-color: #ff8733;">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm" style=padding-top:1%;><center><img src="img/logo_small_icon_only_inverted.png"  width="128" height="128" ></center> </div>
-            <div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooterb">About our food</a></center></div>
-            <div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooter">Aiuto</a></center></div>
-            <div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooter">Feedback</a></center></div>
-            <div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooterb">Seguici sui social</a></center></div>
-            <div class="col-sm" style=padding-top:1%;><center>⠀</center> </div>
-        </div>
-    </div>
-<!-- Footer Elements -->
-  <!--Grid row-->
-</div>
-<!-- Footer Elements -->
-
+        <footer class="page-footer font-small" style="background-color: #ff8733;">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2" style=padding-top:1%;><center><img src="img/logo_small_icon_only_inverted.png"  width="128" height="128" ></center> </div>
+				<div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooterb">About our food</a></center></div>
+				<div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooter">Aiuto</a></center></div>
+				<div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooter">Feedback</a></center></div>
+				<div class="col-sm" style=padding-top:2%;><center><a href="social.html" class="buttonfooterb">Seguici sui social</a></center></div>
+				<div class="col-sm-2" style=padding-top:1%;><center>⠀</center> </div>
+			</div>
+		</div>
 <!-- Copyright -->
 <div class="footer-copyright text-center py-3">© 2020 Copyright:
   <a href="#">SCV.com</a>
 </div>
-<!-- Copyright -->
-
 </footer>
 <!-- Footer --> 
     </body>

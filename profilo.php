@@ -211,7 +211,7 @@ session_start();
                         margin-left:10%;
                         margin-right:5%;
                     }
-                        #invia{
+                    #invia{
                         background-color: #ff6900;
                         border: none;
                         color: white;
@@ -221,7 +221,6 @@ session_start();
                         display: inline-block;
                         font-size: 22px;
                         margin: 4px 2px;
-                        margin-left:13%;
                         cursor: pointer;
                         width: 30%;  
                         height: 5%;
@@ -321,12 +320,69 @@ session_start();
                     }
         
                 }
+                body {
+					font-family: "Lato", sans-serif;
+					transition: background-color .5s;
+					}
+
+					.sidenav {
+					height: 100%;
+					width: 0;
+					position: fixed;
+					z-index: 1;
+					top: 0;
+					left: 0;
+					background-color: #ff6900;
+					overflow-x: hidden;
+					transition: 0.5s;
+					padding-top: 60px;
+					}
+
+					.sidenav a {
+					padding: 8px 8px 8px 32px;
+					text-decoration: none;
+					font-size: 25px;
+					color: white;
+					display: block;
+					transition: 0.3s;
+					}
+
+					.sidenav a:hover {
+					color: #ff8733;
+					}
+
+					.sidenav .closebtn {
+					position: absolute;
+					top: 0;
+					right: 25px;
+					font-size: 36px;
+					margin-left: 50px;
+					}
+					#main {
+					transition: margin-left .5s;
+					padding: 16px;
+					}
             </style>
+            <script>
+			function openNav() {
+			document.getElementById("mySidenav").style.width = "300px";
+			document.getElementById("main").style.marginLeft = "300px";
+			document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+			}
+
+			function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+			document.getElementById("main").style.marginLeft= "0";
+			document.body.style.backgroundColor = "white";
+			}
+		</script>
           <body>
         <div class="bg">
          <!--NAVBAR -->
-         <?php require_once ("nav.php"); ?>
-
+        <?php require_once ("nav.php"); ?>
+        <div class="veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati">
+			<a href="#" class="button">ehy che ci fai qua</a>
+		</div>
     <div class="profilo">
         <br>
         <div class="titolo">
@@ -352,20 +408,13 @@ session_start();
                 <br><h2>⠀Email:</h2><div class="infoscritte"><input name="email" ID="abc" type="text" value=<?php echo $row['email']; ?>></div><br>
                 <br><h2>⠀Telefono:</h2><div class="infoscritte"><input name="telefono" ID="abc" type="text" value=<?php echo $row['telefono']; ?>></div><br>
                 <h4>⠀</h4>
-            </div><br>
-            </div>
-            <div style="clear:both;"></div>
-        
-    <!--<a href="#" class="button">Carica foto</a>
-        <input ID="invia" type="submit" value="Salva">
-    -->    
+            <div style="clear:both;"></div></div>
+            <input ID="invia" type="submit" value="Salva"></form>
+            <form action="upload.php" method="post" enctype="multipart/form-data" name="upload_immagine">
+       <div style="margin-left:10%;"><h2>Scegli immagine</h2><input name="img" type="file" /> <input type="submit" name="carica" value="carica" /></div>
+        </form></h2></div>
     
-        <form action="upload.php" method="post" enctype="multipart/form-data" name="upload_immagine">
-        Scegli immagine <input name="img" type="file" />
-        <input type="submit" name="carica" value="carica" />
-        </form>
-    <input ID="invia" type="submit" value="Salva">
-        </div>
+        
     
     <br>
     <div style="clear:both;"></div>

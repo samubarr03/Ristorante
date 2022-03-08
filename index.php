@@ -242,7 +242,7 @@ session_start();
 				<div class="bottonialcentro">
 					<a href="menu.php" class="button">Menù </a>
 					<a href="#" class="button">Prenota</a>
-					<a href="#" class="button">Info</a>
+					<a href="info.php" class="button">Info</a>
 				</div>
 				<br><br>
 				<center><div class="piatti">
@@ -258,7 +258,7 @@ session_start();
 		<br><br>
 		<h1>WHERE'S THE BEST PLACE TO GET A BURGER IN BRIGHTON & HOVE?</h1>
 		<br>
-		<h4>We're a Hove based web design and development agency with a penchant for burgers. We started this project as a bit of fun, designed to showcase our mad skillz.</h3>
+		<h4>Un luogo celebre e presente ormai dal 1970 solo nella clamorosa città quale è Genova, venite a gustare i piatti celebri del luogo! Il ristorante è in apertura dalle 19:00 a 00:00 in Via XX Settembre.</h3>
 		
 		<h4>We've spent the last few months visiting and reviewing some of Brighton's premier eating establishments and chuffing our way through countless burgers, fries, relishes and coleslaws.</h4>
 		<h4>Come and join us on our culinary caper.</h4>
@@ -269,13 +269,13 @@ session_start();
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm">
-					<div class="card">
+				<center><div class="card">
 						<img src="img/pizza.jpg" alt="Avatar" style="width:100%">
 						<div class="container">
 							<h4><b>John Doe</b></h4>
 							<p>Architect & Engineer</p>
 						</div>
-					</div>
+					</div></center>
 				</div>
 				<div class="col-sm">
 					<center><div class="card">
@@ -287,13 +287,13 @@ session_start();
 					</div></center>
 				</div>
 				<div class="col-sm">
-					<div class="card">
+				<center><div class="card">
 						<img src="img/bibite.png" alt="Avatar" style="width:100%">
 						<div class="container">
 						<h4><b>John Doe</b></h4>
 						<p>Architect & Engineer</p>
 						</div>
-					</div>
+					</div></center>
 				</div>
 			</div>
 		</div>
@@ -306,9 +306,9 @@ session_start();
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-2" style=padding-top:1%;><center><img src="img/logo_small_icon_only_inverted.png"  width="128" height="128" ></center> </div>
-				<div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooterb">About our food</a></center></div>
-				<div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooter">Aiuto</a></center></div>
-				<div class="col-sm" style=padding-top:2%;><center><a href="#" class="buttonfooter">Feedback</a></center></div>
+				<div class="col-sm" style=padding-top:2%;><center><a href="info.php" class="buttonfooterb">About our food</a></center></div>
+				<div class="col-sm" style=padding-top:2%;><center><a href="info.php" class="buttonfooter">Aiuto</a></center></div>
+				<div class="col-sm" style=padding-top:2%;><center><a href="info.php" class="buttonfooter">Feedback</a></center></div>
 				<div class="col-sm" style=padding-top:2%;><center><a href="social.html" class="buttonfooterb">Seguici sui social</a></center></div>
 				<div class="col-sm-2" style=padding-top:1%;><center>⠀</center> </div>
 			</div>

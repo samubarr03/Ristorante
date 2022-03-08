@@ -33,7 +33,11 @@ CREATE TABLE CartaCredito(
 CREATE TABLE Spedizione(
 	id int PRIMARY KEY,
 	email varchar(255) REFERENCES UTENTE  (email),
-	indirizzo varchar(255),
+    nCarta int REFERENCES CartaCredito  (nCarta),
+	Citta varchar(255),
+	via varchar(255),
+	civico int,
+    prezzo float,
 	ordine Timestamp,
 	consegna DATETIME
 );
@@ -56,6 +60,17 @@ CREATE TABLE ClienteAggiungePortata(
 	num int UNIQUE REFERENCES PORTATA (id) ,
 	quantita int,
 	email varchar(255) REFERENCES Cliente (email)
+);
+
+CREATE TABLE PortataVieneSpedita(
+	num int UNIQUE REFERENCES PORTATA (id) ,
+	quantita int,
+	id int REFERENCES Spedizione (id)
+);
+
+CREATE TABLE CartaPagaSpedizione(
+	nCarta int REFERENCES CartaCredito  ,
+	id int REFERENCES Spedizione (id)
 );
 
 

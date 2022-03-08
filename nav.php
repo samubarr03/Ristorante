@@ -51,11 +51,63 @@ if(!isset($_SESSION['email'])){
                 z-index: 1;
             }
         }
+        .dropbtn {
+				background-color:#ff6900 ;
+				color: white;
+
+				border: none;
+				cursor: pointer;
+			}
+			.dropbtn {
+				background-color: #ff8733;
+				color: white;
+				padding: 16px;
+				font-size: 16px;
+				border: none;
+				cursor: pointer;
+                margin-left:5%;
+			}
+
+			.dropdown {
+			position: relative;
+			display: inline-block;
+			}
+
+			.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #ff8733;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+			}
+
+			.dropdown-content a {
+			color: white;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+			}
+
+			.dropdown-content a:hover {background-color: #ff6900}
+
+			.dropdown:hover .dropdown-content {
+			display: block;
+			}
+
+			.dropdown:hover .dropbtn {
+			background-color: #ff6900;
+			}
+            a {
+                color: black;
+                text-decoration: none;
+                background-color: transparent;
+}
     </style>	
     <div class="bg">
         <!--NAVBAR -->
 		<div style="veloznonhafattouncazzo">
-        <nav class="navbar navbar-light" style="position:fixed;background-color:#ff6900;z-index: 1;">
+        <nav class="navbar navbar-light" style="position:fixed;background-color:#ff6900;z-index: 1;width:100%">
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="#">About</a>
@@ -66,7 +118,7 @@ if(!isset($_SESSION['email'])){
         <span id="sparisci" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;⠀</span>
 
 		    <br><a class="navbar-brand" href="#">
-		    <a href="index.php"><img src="img/logo_large_b.png" width="278" height="90" class="d-inline-block align-top" alt=""></a></a>
+		    <a href="index.php"><img src="img/logo_large_b.png" width="308" height="100" class="d-inline-block align-top" alt=""></a></a>
 		    <div class="dropdown">
                 <button class="dropbtn"><a href="menu.php">Menù</a></button>
                 <div class="dropdown-content">
@@ -91,10 +143,10 @@ if(!isset($_SESSION['email'])){
             <div class="dropdown">
                 <button class="dropbtn"> <?php echo $logged; ?> </button>
             <div class="dropdown-content">
-                <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="Ordina.php">Ordini</a>
+                    <a class="dropdown-item" href="carrello.php">Carrello</a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="logout.php">Logout</a>
-                    <a class="dropdown-item" href="Ordini.php">Ordini</a>
-                    <a class="dropdown-item" href="carrello.php">carrello</a>
                 </div>
             </div>
             
