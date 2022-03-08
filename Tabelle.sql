@@ -65,12 +65,8 @@ CREATE TABLE ClienteAggiungePortata(
 CREATE TABLE PortataVieneSpedita(
 	num int UNIQUE REFERENCES PORTATA (id) ,
 	quantita int,
-	id int REFERENCES Spedizione (id)
-);
-
-CREATE TABLE CartaPagaSpedizione(
-	nCarta int REFERENCES CartaCredito  ,
-	id int REFERENCES Spedizione (id)
+	id int REFERENCES Spedizione (id),
+    PRIMARY KEY (num,id)
 );
 
 

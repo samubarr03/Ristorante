@@ -14,8 +14,16 @@ session_start();
 
 	
 
-	if($_POST){
-		
+	if($_POST)
+	$sql = "SELECT * FROM cartacredito where nCarta= '".$_POST["nCarta"]."'";
+	$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+	if(mysqli_num_rows($resultset) > 0)
+		{
+			$res = mysqli_fetch_array($resultset);
+			
+		}
+	else{
+		if($_POST){
 			if($_POST["nomeCarta"]){
 				$nomeCarta=$_POST["nomeCarta"];
 			}
@@ -32,12 +40,7 @@ session_start();
 			}
 			if($_POST["cvv"]){
 				$cvv=$_POST["cvv"];
-			}
-			$sql = " SELECT * FROM cartacredito where email='".$_SESSION['email']."' AND nCarta<>\"'.$nCarta.'\" ";
-			$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
-			if(mysqli_num_rows($resultset) = 0)
-					$res = mysqli_fetch_array($resultset);
-						
+			}	
 			$sql = "INSERT INTO cartacredito VALUES ('{$nomeCarta}','{$cognomeCarta}','{$nCarta}','{$scadenza}','{$cvv}','{$_SESSION['email']}')";
 			$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
 		}
@@ -74,8 +77,7 @@ session_start();
 		$sql = "SELECT SUM(prezzo) FROM ClienteAggiungePortata,Portata where ClienteAggiungePortata.num=Portata.id ";
 		$totale = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));		
    
-		$sql = "INSERT INTO Spedizione VALUES ('{$id}','{$_SESSION['email']}','{$nCarta}','{$citta}','{$via}','{$civico}','{$totale}',now(),'{$data}')";
-		$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));	
+
 		
 
 		$sql = "SELECT * FROM ClienteAggiungePortata ";
@@ -88,15 +90,17 @@ session_start();
 			$num=$row['num'];	
 			$quantita=$row['quantita'];	
 
+			$sql = "DELETE  FROM ClienteAggiungePortata WHERE `num`='{$id}' && `email`='{$_SESSION['email']}' ";
+			$del = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+
 			$sql = "INSERT INTO PortataVieneSpedita VALUES ('{$num}','{$quantita}','{$id}')";
 			$add = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));		
-
-			$sql = "DELETE FROM ClienteAggiungePortata WHERE num='{$num}'";
-			$del = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));		
+		
 			}	
     	}
-
-		header("location: index.php");
+		$sql = "INSERT INTO spedizione VALUES ('{$id}','{$_SESSION['email']}','{$nCarta}','{$citta}','{$via}','{$civico}','{$totale}','CURRENT_TIMESTAMP','{$data}')";
+		$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+	header("location: index.php");
 	}
 
 	$sql = "SELECT SUM(prezzo) FROM ClienteAggiungePortata,Portata where ClienteAggiungePortata.num=Portata.id ";
@@ -322,21 +326,6 @@ session_start();
 						color: green;
 						font-size:18px;
 					}
-					.profilo{
-                        margin-left:15%;
-                        margin-right:15%;
-                        margin-top:2%;
-                        width:70%;
-                        height:60%;
-                        background-color: #ff8733;
-						float:right;
-                    }   
-					.infoscritte{
-                        background-color: #ff7816;
-                        float:right;
-                        margin-left:5%;
-                        margin-right:5%;
-                    }  
         	</style>
 		<body>
 		<script>
@@ -356,24 +345,23 @@ session_start();
         <!--NAVBAR -->
 				
 				<?php require_once ("nav.php"); ?>
-				<div class="veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati">
-					<a href="#" class="button">ehy che ci fai qua</a>
-				</div>
-				<div class="profilo" style="border: 12px solid #ff6900;">
-					<h1>Inserisci dati consegna</h1>
-					<form method="POST" > 
-                <h2>Città:</h2><div class="infoscritte"><input name="citta" ID="abc" type="text" value=<?php echo $row['Citta']; ?>></div>
-                <h2>Via:</h2><div class="infoscritte"><input name="via" ID="abc" type="text" value=<?php echo $row['via']; ?>></div>
-                <h2>Civico:</h2><div class="infoscritte"><input name="civico" ID="abc" type="text" value=<?php echo $row['civico']; ?>></div>
-				<h2>Consegna:(Per consegna immediata mettere l'ora attuale)</h2><div class="infoscritte"><input type="datetime-local" id="meeting-time" name="data" value="2022-02-12T19:30"min="2022-02-28T00:00" max="2025-06-14T00:00"></div>
-                <h2>Nome Carta:</h2><div class="infoscritte"><input name="nomeCarta" ID="abc" type="text" value=<?php echo $res['nome']; ?>></div>
-                <h2>Cognome Carta:</h2><div class="infoscritte"><input name="cognomeCarta" ID="abc" type="text" value=<?php echo $res['cognome']; ?>></div>
-                <h2>Numero Carta:</h2><div class="infoscritte"><input name="nCarta" ID="abc" type="text" min="16" max="16" value=<?php echo $res['nCarta']; ?>></div>
+
+            <form method="POST" >
+
+                
+                <h2>Città:</h2><div class="infoscritte"><input name="citta" ID="abc" type="text" value=<?php echo $row['Citta']; ?>></div><br>
+                <br><h2>Via:</h2><div class="infoscritte"><input name="via" ID="abc" type="text" value=<?php echo $row['via']; ?>></div><br>
+                <br><h2>Civico:</h2><div class="infoscritte"><input name="civico" ID="abc" type="text" value=<?php echo $row['civico']; ?>></div><br>
+				<h2>Consegna:Se la si vuole immediata mttere l'ora più vicina al momento attuale<input type="datetime-local" id="meeting-time" name="data" value="2022-02-12T19:30"min="2022-02-28T00:00" max="2025-06-14T00:00">
+                <h2>Nome Carta:</h2><div class="infoscritte"><input name="nomeCarta" ID="abc" type="text" value=<?php echo $res['nome']; ?>></div><br>
+                <br><h2>⠀Cognome Carta:</h2><div class="infoscritte"><input name="cognomeCarta" ID="abc" type="text" value=<?php echo $res['cognome']; ?>></div><br>
+                <br><h2>Numero Carta:</h2><div class="infoscritte"><input name="nCarta" ID="abc" type="text" min="16" max="16" value=<?php echo $res['nCarta']; ?>></div><br>
                 <h2>Scadenza:</h2><input type="datetime-local" id="meeting-time" name="scadenza" value="2022-02-12T19:30"min="2022-02-28T00:00" max="2025-06-14T00:00">
-                <h2>CVV:</h2><div class="infoscritte"><input name="cvv" ID="abc" type="text" min="3" max="3"value=<?php echo $res['CVV']; ?>></div>  
-                <br><button type="submit"> Salva</a></button>
+                <br><h2>CVV:</h2><div class="infoscritte"><input name="cvv" ID="abc" type="text" min="3" max="3"value=<?php echo $res['CVV']; ?>></div><br>     
+                <button type="submit"> Salva</a></button>
             </form><br>
-		</div>
+            </div>
+
 
 			<div class="container">
 					<div class="row text-center py-5">
@@ -391,7 +379,7 @@ session_start();
 										$element =
 											"<div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
 													<div>
-														<div class=\"card shadow\" style=\"width: 18rem; height: 32rem; border-radius:0.25rem; \">
+														<div class=\"card shadow\" style=\"width: 18rem; height: 30rem; border-radius:0.25rem; \">
 															<div>
 																<img src=img/Immagini/$img alt=\"Image1\" class=\"img-fluid card-img-top\" style=\"width: 18rem; height: 14rem; \">
 															</div>
@@ -479,14 +467,14 @@ session_start();
 																</style>  
 																
 																	<div class=\"number-input\">
-																		<button onclick=\"dec()\" ></button>
+																		
 																		<input type=\"number\" min=\"0\" name=\"quantity\" value=$qta type=\"number\" >
-																		<button onclick=\" inc()\" class=\"plus\"></button>
+																		
 																	</div>
 																</h1>
-																<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id&qta=$qta\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
+																<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
 																 <input type='hidden' name='product_id' value='$id'>
-															<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"remc\">  <a href=\"carrello.php?action=rimuovic&id=$id\">Rimuovi dal carrello</a><i class=\"fas fa-shopping-cart\"></i></button>         	         
+															<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"remc\">  <a href=\"carrello.php?action=rimuovic&id=$id\">Rimuovi dal carrello</a><i class=\"fas fa-shopping-cart\"></i></button>\";          	         
 															</div>
 														</div>
 													</div>
@@ -501,7 +489,7 @@ session_start();
 									
 									
 
-					</div>		</div>		
+					</div>			
             <div style="clear:both;"></div>        
 		<!-- Footer -->
 	<footer class="page-footer font-small" style="background-color: #ff8733;">

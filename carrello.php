@@ -19,6 +19,7 @@
 
 			$sql = "INSERT INTO ClienteAggiungePortata
 			VALUES ('{$var}','1','{$email}')";
+			
 		}
 
 		if($_GET['action']=="rimuovi"){
@@ -38,10 +39,10 @@
 	
 
 		if ($conn->query($sql) === TRUE) {
-			echo"bueno";
+			
 			} 
 			else {
-				echo"mucho";
+				
 				$sql = "SELECT * FROM ClienteAggiungePortata where `num`='{$var}' ORDER BY num ASC";
 				$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
 				if(mysqli_num_rows($resultset) > 0)
@@ -55,9 +56,8 @@
 				}
 				$qta=$qta+1;
 
-				$sql = "INSERT INTO ClienteAggiungePortata
-				VALUES ('{$var}','{$qta}','{$email}')";
-				if ($conn->query($sql) === TRUE){}
+				$sql = "UPDATE ClienteAggiungePortata SET quantita='$qta' WHERE `id`='{$var}'";
+				$results = mysqli_query($conn, $sql);
 			}
 	}
 	
@@ -127,7 +127,61 @@
 					.dropdown:hover .dropbtn {
 					background-color: #ff6900;
 					}
-					
+        	</style>
+		<body>
+			<div class="bg">
+        <!--NAVBAR -->
+				<?php require_once ("nav.php"); ?>
+	
+				<img src="img/immagina.png" class="flex">
+				<div class="bottonialcentro">
+					<a href="menu.php" class="button">Menù </a>
+					<a href="#" class="button">Prenota</a>
+					<a href="#" class="button">Chi siamo</a>
+				</div>
+
+	        
+
+				<div class="container">
+					<div class="row text-center py-5">
+						<?php
+							$sql = "SELECT * FROM ClienteAggiungePortata,Portata where ClienteAggiungePortata.num=Portata.id ORDER BY id ASC";
+							$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+							if(mysqli_num_rows($resultset) > 0)
+
+								{
+								while($row = mysqli_fetch_array($resultset))
+								{
+								$nome=$row['nome'];	
+								$prezzo=$row['prezzo'];	
+								$img=$row['img'];
+								$id=$row['id'];	
+								$qta=$row['quantita'];	
+										$element =
+											"<div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
+													<div>
+														<div class=\"card shadow\" style=\"width: 18rem; height: 30rem; border-radius:0.25rem; \">
+															<div>
+																<img src=img/Immagini/$img alt=\"Image1\" class=\"img-fluid card-img-top\" style=\"width: 18rem; height: 14rem; \">
+															</div>
+															<div class=\"card-body\">
+																<h5 class=\"card-title\">$nome</h5>
+																<h6>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"fas fa-star\"></i>
+																	<i class=\"far fa-star\"></i>
+																</h6>
+																<p class=\"card-text\">
+									
+																</p>
+																<h5>
+																	
+																	<span class=\"price\">€$prezzo</span>
+																</h5>
+																<h1>
+																<style>
 																	input[type=\"number\"] {
 																		-webkit-appearance: textfield;
 																		-moz-appearance: textfield;
@@ -191,280 +245,9 @@
 																		text-align: center;
 																		color:#9be3df;
 																	}
-													 
+																</style>  
 																
-				
-		.veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati{
-						height:116px;
-						width:100%;
-						background-color:#ff6900;
-					}
-					.veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati .a{
-						width: 50%;
-						height: 2%;
-						color: green;
-						font-size:1px;
-					}
-					.veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati .button{
-						width: 40%;
-						height: 2%;
-						color: green;
-						font-size:18px;
-					}	
-					.bottonialcentro3 .button{
-						background-color:#ff6900;
-						border-radius: 25px;
-						font-size:300%;
-						border: 5px solid #ff8733;
-  						border-radius: 25px;
-						
-			}		
-			.bottonialcentro3 .a {margin: 0 auto;}	
-			.dropbtn {
-					background-color: #ff8733;
-					color: white;
-					padding: 16px;
-					font-size: 24px;
-					border: none;
-					cursor: pointer;
-					width: 160px;
-					height: 80px;
-					}
-
-					.dropdown {
-					position: relative;
-					display: inline-block;
-					}
-
-					.dropdown-content {
-					display: none;
-					position: absolute;
-					background-color: #ff8733;
-					min-width: 160px;
-					box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-					z-index: 1;
-					}
-
-					.dropdown-content a {
-					color: white;
-					padding: 12px 16px;
-					text-decoration: none;
-					display: block;
-					}
-
-					.dropdown-content a:hover {background-color: #ff6900}
-
-					.dropdown:hover .dropdown-content {
-					display: block;
-					}
-
-					.dropdown:hover .dropbtn {
-					background-color: #ff6900;
-					}
-					body {
-					font-family: "Lato", sans-serif;
-					transition: background-color .5s;
-					}
-
-					.sidenav {
-					height: 100%;
-					width: 0;
-					position: fixed;
-					z-index: 1;
-					top: 0;
-					left: 0;
-					background-color: #ff6900;
-					overflow-x: hidden;
-					transition: 0.5s;
-					padding-top: 60px;
-					}
-
-					.sidenav a {
-					padding: 8px 8px 8px 32px;
-					text-decoration: none;
-					font-size: 25px;
-					color: white;
-					display: block;
-					transition: 0.3s;
-					}
-
-					.sidenav a:hover {
-					color: #ff8733;
-					}
-
-					.sidenav .closebtn {
-					position: absolute;
-					top: 0;
-					right: 25px;
-					font-size: 36px;
-					margin-left: 50px;
-					}
-					#main {
-					transition: margin-left .5s;
-					padding: 16px;
-					}
-					@media screen and (max-height: 450px) {
-					.sidenav {padding-top: 15px;}
-					.sidenav a {font-size: 18px;}
-					.dropbtn{
-						width: 0px;
-						height: 0px;
-					}}
-					@media screen and (max-width: 450px) {
-                        .bottonialcentro3 .button{
-						background-color:#ff6900;
-						border-radius: 25px;
-						font-size:300%;
-						border: 5px solid #ff8733;
-  						border-radius: 25px;	
-						width:200px;
-						height:100px;	
-						}	
-						.bg{
-                            background: repeating-linear-gradient(
-                            45deg,
-                            #ff6900,
-                            #ff6900 45px,
-                            #ff8733 45px,
-                            #ff8733 90px
-                            );
-                        }
-						.dropdown {
-							position: relative;
-							display: none;
-						}
-						.dropbtn {
-							display:none;
-						}
-						.bottonialcentro{
-							background-color:#ff6900;
-							margin-left:3%;
-							margin-right:3%;
-							width:92%;
-							padding-left:1%;
-							padding-right:1%;
-							height:64px;
-						}
-						.button {
-							background-color: #ff8733;
-							border: none;
-							color: white;
-							text-align: center;
-							text-decoration: none;
-							display: inline-block;
-							float:center;
-							font-size: 20px;
-							cursor: pointer;
-							width: 28%;  
-							height: 75%;
-							font-family: "Open Sans", sans-serif;
-							padding: 10px 0;
-						}
-						.piatti a{
-							width: 180px;
-							height: 180px;	
-							font-size: 200%;
-							display: inline-block;
-							float:center;
-						}
-						.dropbtn {
-							background-color:#ff6900 ;
-							color: white;
-
-							border: none;
-							cursor: pointer;
-						}
-						.pparte{
-							background-color:#ff8733;
-							text-align: center;
-							padding-left:2%;
-							padding-right:2%;
-						}
-						.pparte p {
-							font-variant-numeric: oldstyle-nums;
-							padding-left:2%;
-							padding-right:2%;
-							width:96%;
-						}
-						.pparte h1 {
-							font-variant-numeric: oldstyle-nums;
-							color: #000000;
-							padding-left:1%;
-							width:98%;
-							padding-right:1%;
-						}
-
-					}
-					.veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati{
-						height:106px;
-						width:100%;
-						background-color:#ff6900;
-					}
-					.veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati .a{
-						width: 50%;
-						height: 2%;
-						color: green;
-						font-size:1px;
-					}
-					.veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati .button{
-						width: 40%;
-						height: 2%;
-						color: green;
-						font-size:18px;
-					}						
-        	</style>
-		<body>
-			<div class="bg">
-        <!--NAVBAR -->
-				<?php require_once ("nav.php"); ?>
-				<div class="veloznonfanullaincredibileprofquestaèunadenuncianonsipuòlavorarecosilaprossimavoltaigruppipiùequilibrati">
-					<a href="#" class="button">ehy che ci fai qua</a>
-				</div>
-				<div class="pparte">
-		<br>
-		<img src="img/carrello.png" width="50%">
-		<h1>CARRELLO</h1>
-		<br>
-		<br>
-		<h4>Qui potrai vedere i tuoi ordini. Per ordinare clicca il pulsante ordina sotto i prodotti che ti porterà ad una pagina dove inserire i dati della carta</h3>
-		<h4>Nel caso il carrello fosse vuoto, vai nella sezione menu per riempirlo!</h4>
-		<br>		
-	</div>
-
-				<div class="bg">
-						<?php
-							$sql = "SELECT * FROM ClienteAggiungePortata,Portata where ClienteAggiungePortata.num=Portata.id ORDER BY id ASC";
-							$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
-							if(mysqli_num_rows($resultset) > 0)
-
-								{
-								while($row = mysqli_fetch_array($resultset))
-								{
-								$nome=$row['nome'];	
-								$prezzo=$row['prezzo'];	
-								$img=$row['img'];
-								$id=$row['id'];	
-								$qta=$row['quantita'];	
-										$element =
-										"</div>
-		
-														<div class=\"card shadow\" style=\"width: 18rem; height: 32rem;border-radius:0.25rem;display:inline-block;margin-top:3%;margin-right:4.5%;margin-left:4.5%;@media screen and (max-width: 7070px){.card shadow{margin-left:20%;} \">
-														<div style=\"carte\">
-																<img src=img/Immagini/$img alt=\"Image1\" class=\"img-fluid card-img-top\" style=\"width: 18rem; height: 14rem; \">
-															</div>
-															<div class=\"card-body\"><center>
-																<h5 class=\"card-title\">$nome</h5>
-																<h6>
-																	<i class=\"fas fa-star\"></i>
-																	<i class=\"fas fa-star\"></i>
-																	<i class=\"fas fa-star\"></i>
-																	<i class=\"fas fa-star\"></i>
-																	<i class=\"far fa-star\"></i>
-																</h6>
-																<p class=\"card-text\"></p>
-																<h5><span class=\"price\">€$prezzo</span></h5>
-																<h1>
-																<div class=\"number-input\">
+																	<div class=\"number-input\">
 																		
 																		<input type=\"number\" min=\"0\" name=\"quantity\" value=$qta type=\"number\" >
 																		
@@ -472,8 +255,11 @@
 																</h1>
 																<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">  <a href=\"carrello.php?action=aggiungi&id=$id\">Aggiungi al carrello.</a><i class=\"fas fa-shopping-cart\"></i></button>
 																 <input type='hidden' name='product_id' value='$id'>
-															<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"remc\">  <a href=\"carrello.php?action=rimuovic&id=$id\">Rimuovi dal carrello</a><i class=\"fas fa-shopping-cart\"></i></button></center>       	         
+															<button type=\"submit\" class=\"btn btn-warning my-3\" name=\"remc\">  <a href=\"carrello.php?action=rimuovic&id=$id\">Rimuovi dal carrello</a><i class=\"fas fa-shopping-cart\"></i></button>\";          	         
 															</div>
+														</div>
+													</div>
+												</div>
 										";
 										echo $element;
 								}
@@ -483,10 +269,9 @@
 									?>
 									
 									
-									</div><div style="clear: both"></div><br>
-					<div class="bottonialcentro3">
-					<center><a href="ordina.php" class="button">Ordina</a></center>
-				</div><br>
+
+					</div>
+					<button> <a href="ordina.php">Ordina</a></button>
 				</div> 
 			</div> 
 		<!-- Footer -->
