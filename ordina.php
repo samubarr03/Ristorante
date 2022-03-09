@@ -13,16 +13,6 @@ session_start();
 	require_once ('data.php');
 
 	
-
-	if($_POST)
-	$sql = "SELECT * FROM cartacredito where nCarta= '".$_POST["nCarta"]."'";
-	$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
-	if(mysqli_num_rows($resultset) > 0)
-		{
-			$res = mysqli_fetch_array($resultset);
-			
-		}
-	else{
 		if($_POST){
 			if($_POST["nomeCarta"]){
 				$nomeCarta=$_POST["nomeCarta"];
@@ -40,9 +30,14 @@ session_start();
 			}
 			if($_POST["cvv"]){
 				$cvv=$_POST["cvv"];
-			}	
+			}
+			$sql = "SELECT * FROM cartacredito where nCarta= '".$nCarta."'";
+			$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
+			if($resultest>0){}
+			else{
 			$sql = "INSERT INTO cartacredito VALUES ('{$nomeCarta}','{$cognomeCarta}','{$nCarta}','{$scadenza}','{$cvv}','{$_SESSION['email']}')";
-			$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));			
+			$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));	
+			}		
 		}
 		else{
 			$res['nome']='';
@@ -52,7 +47,7 @@ session_start();
 			$res['CVV']='';
 		}   
 
-	}
+	
 
     if($_POST){
 
